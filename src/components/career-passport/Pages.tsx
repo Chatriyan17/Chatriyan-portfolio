@@ -22,7 +22,7 @@ export function IdentityPage() {
                     <div className="w-[120px] h-[150px] border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] p-1 bg-white rotate-[-2deg] shadow-sm mb-4">
                         <div className="w-full h-full bg-slate-200 overflow-hidden relative">
                             {/* Passport photo placeholder or actual image */}
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=250&fit=crop" alt="Photo" className="w-full h-full object-cover grayscale opacity-90 contrast-125" draggable={false} />
+                            <img src="/profile-photo.png" alt="Photo" className="w-full h-full object-cover grayscale opacity-90 contrast-125" draggable={false} />
                             <div className="absolute inset-0 bg-blue-500/10 mix-blend-color" />
                             {/* Perforation dots on the photo */}
                             <div className="absolute right-2 top-2 bottom-2 w-1 border-r border-dotted border-white/50" />

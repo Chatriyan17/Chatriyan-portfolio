@@ -1014,7 +1014,7 @@ function PortfolioFolder() {
   }> = [
     {
       id: 'p1', title: 'YouTube Shorts', subtitle: 'AI Product Discovery',
-      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500&q=80',
+      image: '/youtube-thumbnail.png',
       url: '/case-studies/youtube-shorts/index.html',
       startX: -25, endX: -260, startRotate: -7, endRotate: -18, endY: -160, delay: 0.1
     },

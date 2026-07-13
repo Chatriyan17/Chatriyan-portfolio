@@ -1,0 +1,25 @@
+/* Exact typefaces from the YouTube Shorts Figma Make case study:
+   Inter (body), DM Serif Display (display), JetBrains Mono (mono), Caveat (accent) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
+  --font-bubbly: "Caveat", ui-serif, cursive;
+  --font-vintage: "JetBrains Mono", "Courier New", Courier, monospace;
+}
+
+body {
+  background-color: #f8fafc;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

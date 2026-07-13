@@ -168,3 +168,4 @@ MIT License - feel free to fork and adapt for your own portfolio!
 ---
 
 Built with ❤️ as an interactive design portfolio
+# Build fix

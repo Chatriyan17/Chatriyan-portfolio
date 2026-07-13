@@ -203,7 +203,7 @@ export default function WorkspaceCanvas() {
 
         {/* Right: Resume */}
         <div className="pointer-events-auto flex justify-end min-w-[200px]">
-          <button className="bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-xl px-5 py-3 font-bold uppercase tracking-wider text-sm text-slate-900 cursor-pointer hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] hover:bg-[#a78bfa] transition-all flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-purple-400" onClick={() => window.open('#', '_blank')}>
+          <button className="bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-xl px-5 py-3 font-bold uppercase tracking-wider text-sm text-slate-900 cursor-pointer hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] hover:bg-[#a78bfa] transition-all flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-purple-400" onClick={() => window.open('https://drive.google.com/file/d/10uw0cw1ByjGjnWtE0BNzawrD0bMxOAdf/view?usp=sharing', '_blank', 'noopener,noreferrer')}>
             <Download className="w-4 h-4" />
             Resume
           </button>

@@ -23,3 +23,38 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Loading screen infinite animations (CSS so they don't block framer's exit) */
+@keyframes ls-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ls-twinkle {
+  0%,
+  100% {
+    transform: scale(0.7) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(90deg);
+  }
+}
+@keyframes ls-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+.ls-spin {
+  animation: ls-spin 26s linear infinite;
+  transform-origin: center;
+}
+.ls-twinkle {
+  animation: ls-twinkle 2.4s ease-in-out infinite;
+}
+.ls-pulse {
+  animation: ls-pulse 1.2s ease-in-out infinite;
+}

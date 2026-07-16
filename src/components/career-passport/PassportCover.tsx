@@ -47,16 +47,16 @@ export function PassportCover({ onClick }: { onClick: () => void }) {
             }}
             tabIndex={0}
         >
-            <motion.div 
+            <motion.div
                 layoutId="passport-container"
                 className="relative flex items-start justify-center origin-top w-[160px] h-[210px] md:w-[190px] md:h-[250px] lg:w-[210px] lg:h-[276px]"
                 initial={{ rotate: -4 }}
-                whileHover={{ 
-                    scale: 1.05, 
-                    y: -16, 
-                    rotate: -2 
+                whileHover={{
+                    scale: 1.05,
+                    y: -16,
+                    rotate: -2
                 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
             >
                 {/* Thumb Pin - brutalist */}
                 <motion.div 
@@ -101,14 +101,15 @@ export function PassportCover({ onClick }: { onClick: () => void }) {
                 />
 
                 {/* Passport Cover Main */}
-                <motion.div 
+                <motion.div
                     layoutId="passport-cover"
                     className="w-full h-full bg-[#e5e5e5] border-[3px] border-slate-900 flex flex-col items-center justify-between py-[24px] px-[16px] relative z-10 overflow-hidden"
                     animate={{
-                        boxShadow: isHovered 
-                            ? "8px 8px 0px #0f172a" 
+                        boxShadow: isHovered
+                            ? "8px 8px 0px #0f172a"
                             : "6px 6px 0px #0f172a"
                     }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                     {/* Paper edges protruding slightly */}
                     <div className="absolute top-[4px] bottom-[4px] -right-[6px] w-[6px] bg-white z-[-1] border-y-[3px] border-r-[3px] border-slate-900 flex flex-col justify-evenly overflow-hidden">

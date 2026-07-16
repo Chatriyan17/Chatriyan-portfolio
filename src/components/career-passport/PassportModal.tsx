@@ -16,7 +16,7 @@ const PAGES = [
     { id: 'back-inside', component: () => <div className="w-full h-full bg-[#e5e5e5] shadow-[8px_0_0_#0f172a_inset] relative overflow-hidden"><PageTexture /></div> }
 ];
 
-export function PassportModal({ onClose }: { onClose: () => void }) {
+export function PassportModal({ onClose, closing }: { onClose: () => void; closing: boolean }) {
     const [currentSpread, setCurrentSpread] = useState(0); // 0, 1, 2, 3
     const totalSpreads = 4;
     const [direction, setDirection] = useState(1);
@@ -63,23 +63,23 @@ export function PassportModal({ onClose }: { onClose: () => void }) {
     
     return createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
-            {/* Backdrop blur */}
-            <motion.div 
+            {/* Backdrop blur.
+                No `exit` here — unmounting is driven by a timeout in Passport.tsx, not by
+                AnimatePresence's exit-completion callback (see CLOSE_ANIMATION_MS comment). */}
+            <motion.div
                 initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                animate={{ opacity: 1, backdropFilter: 'blur(12px)' }}
-                exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                transition={{ duration: 0.5 }}
+                animate={closing ? { opacity: 0, backdropFilter: 'blur(0px)' } : { opacity: 1, backdropFilter: 'blur(12px)' }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
                 className="absolute inset-0 bg-slate-900/40 pointer-events-auto"
                 onClick={onClose}
             />
 
-            <motion.div 
+            <motion.div
                 layoutId="passport-container"
                 className="relative w-[980px] max-w-[90vw] h-[680px] max-h-[90vh] perspective-[2000px] pointer-events-auto z-10"
-                initial={{ rotateX: 10, y: 40, scale: 0.95 }}
-                animate={{ rotateX: 0, y: 0, scale: 1 }}
-                exit={{ rotateX: -10, y: 40, scale: 0.95 }}
-                transition={{ duration: 0.7, type: 'spring', damping: 25, stiffness: 100 }}
+                initial={{ rotateX: 8, y: 24, scale: 0.97 }}
+                animate={closing ? { rotateX: -8, y: 24, scale: 0.97 } : { rotateX: 0, y: 0, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 420, damping: 34, mass: 0.8 }}
             >
                 {/* Close Button */}
                 <motion.button 
@@ -90,7 +90,7 @@ export function PassportModal({ onClose }: { onClose: () => void }) {
                 </motion.button>
 
                 {/* The Passport Book Spread */}
-                <motion.div 
+                <motion.div
                     layoutId="passport-cover"
                     className="w-full h-full bg-[#e5e5e5] rounded-none shadow-[16px_16px_0px_#0f172a] flex relative overflow-visible border-[3px] border-slate-900"
                 >
@@ -148,14 +148,32 @@ export function PassportModal({ onClose }: { onClose: () => void }) {
                                 <motion.div
                                     key={currentSpread}
                                     custom={direction}
-                                    initial={{ rotateY: direction > 0 ? 90 : -90, opacity: 0, zIndex: 10 }}
-                                    animate={{ rotateY: 0, opacity: 1, zIndex: 1 }}
-                                    exit={{ rotateY: direction > 0 ? -90 : 90, opacity: 0, zIndex: 10 }}
-                                    transition={{ duration: 0.7, type: "spring", damping: 20, stiffness: 80 }}
+                                    initial={{ rotateY: direction > 0 ? 62 : -62, opacity: 0, scale: 1, zIndex: 10 }}
+                                    animate={{ rotateY: 0, opacity: 1, scale: [1, 1.015, 1], zIndex: 1 }}
+                                    exit={{ rotateY: direction > 0 ? -62 : 62, opacity: 0, scale: 1, zIndex: 10 }}
+                                    transition={{
+                                        rotateY: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+                                        scale: { duration: 0.4, ease: 'easeInOut', times: [0, 0.5, 1] },
+                                        opacity: { duration: 0.22 },
+                                        default: { duration: 0.32 },
+                                    }}
                                     className="absolute inset-0 origin-left"
                                     style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
                                 >
                                     {RightComponent && <RightComponent />}
+
+                                    {/* Depth shadow: the lifted page casts a shadow near the spine as it turns.
+                                        No `exit` prop here on purpose — it must not become an independent
+                                        participant in AnimatePresence's exit-completion tracking, or an
+                                        ancestor unmount (closing the whole modal) can deadlock waiting on it. */}
+                                    <motion.div
+                                        aria-hidden
+                                        className="pointer-events-none absolute inset-0 origin-left"
+                                        style={{ background: 'linear-gradient(to right, rgba(15,23,42,0.45), rgba(15,23,42,0) 42%)' }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: [0, 0.5, 0] }}
+                                        transition={{ duration: 0.4, ease: 'easeInOut', times: [0, 0.42, 1] }}
+                                    />
                                 </motion.div>
                             </AnimatePresence>
                         </div>

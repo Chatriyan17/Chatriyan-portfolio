@@ -35,3 +35,6 @@ Thumbs.db
 
 # Claude Code specific
 .claude/
+
+.vercel
+.env*

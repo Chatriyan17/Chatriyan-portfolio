@@ -1015,7 +1015,13 @@ function PortfolioFolder() {
     {
       id: 'p1', title: 'YouTube Shorts', subtitle: 'AI Product Discovery',
       image: '/youtube-thumbnail.png',
-      url: '/case-studies/youtube-shorts/index.html',
+      // Path changed from /youtube-shorts/ to /youtube-shorts-v2/ because Vercel's
+      // edge CDN got permanently stuck serving an 18-day-stale cached response for
+      // the old path — confirmed via curl (cache-busting + no-cache headers) and a
+      // real browser's fetch({cache:'no-store'}), all still returning the old
+      // bundle even after multiple successful "Ready" redeploys. A new path is a
+      // new cache key with no history, which sidesteps the stuck entry entirely.
+      url: '/case-studies/youtube-shorts-v2/index.html',
       startX: -25, endX: -260, startRotate: -7, endRotate: -18, endY: -160, delay: 0.1
     },
     {

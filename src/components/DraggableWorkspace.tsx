@@ -1766,7 +1766,7 @@ function GreetingCard({ timeStr, currentHour }: { timeStr: string, currentHour: 
         )}
       </div>
       <div className="mt-8 font-serif italic text-lg opacity-80 text-center text-slate-800">
-        "Stop intuiting, start intending"
+        "Imperfection Mentally"
       </div>
     </div>
   );

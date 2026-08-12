@@ -1032,6 +1032,7 @@ function PortfolioFolder() {
     {
       id: 'p4', title: 'Design System', subtitle: 'Global Component Library',
       image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80',
+      url: 'https://www.figma.com/design/eUVrjd7p0u1ihsgarv7khQ/Chatriyan-Design-system-1?node-id=0-1&t=oIYmYxpAote7gcZQ-1',
       startX: 25, endX: 260, startRotate: 7, endRotate: 18, endY: -160, delay: 0.9
     },
   ];

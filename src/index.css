@@ -1,6 +1,9 @@
-/* Exact typefaces from the YouTube Shorts Figma Make case study:
-   Inter (body), DM Serif Display (display), JetBrains Mono (mono), Caveat (accent) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@700&display=swap');
+/* Cozy pixel-art RPG theme.
+   Pixelify Sans  — pixel display face for labels, badges, buttons and headings.
+   Inter          — clean sans for UI copy.
+   Lora           — readable serif for long-form text (story, passport pages).
+   JetBrains Mono — data / machine-readable details. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 /* Tailwind v4 auto-detects sources from the project root, which pulls in
@@ -12,14 +15,243 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
+  --font-serif: "Lora", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
-  --font-bubbly: "Caveat", ui-serif, cursive;
-  --font-vintage: "JetBrains Mono", "Courier New", Courier, monospace;
+  --font-pixel: "Pixelify Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-bubbly: "Pixelify Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-vintage: "Pixelify Sans", "Courier New", Courier, monospace;
+
+  /* ---- Core palette ---- */
+  --color-px-wood: #B98250;
+  --color-px-wood-dark: #8A5E38;
+  --color-px-oak: #E8C69A;
+  --color-px-forest: #536B4B;
+  --color-px-sage: #9AA889;
+  --color-px-cream: #FFF1D6;
+  --color-px-ink: #493529;
+  --color-px-terracotta: #C96F4A;
+  --color-px-floor: #DCAA78;
+
+  /* Pixel art has square corners: flatten every radius token.
+     (rounded-full keeps working for true circles.) */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+
+  /* Remap Tailwind's stock hues onto the earthy palette so every existing
+     utility (text-slate-900, bg-emerald-50, …) lands on-theme without
+     touching component logic. */
+  --color-white: #FFF1D6;
+
+  /* slate / stone / gray → ink browns + parchment */
+  --color-slate-50: #FFF8EA;
+  --color-slate-100: #FFF1D6;
+  --color-slate-200: #F2DDB8;
+  --color-slate-300: #E0C49A;
+  --color-slate-400: #A88A6E;
+  --color-slate-500: #8A6E56;
+  --color-slate-600: #765C47;
+  --color-slate-700: #634B39;
+  --color-slate-800: #553F30;
+  --color-slate-900: #493529;
+  --color-slate-950: #2E2119;
+  --color-stone-50: #FFF8EA;
+  --color-stone-100: #FFF1D6;
+  --color-stone-200: #F2DDB8;
+  --color-stone-300: #E0C49A;
+  --color-stone-400: #A88A6E;
+  --color-stone-500: #8A6E56;
+  --color-stone-600: #765C47;
+  --color-stone-700: #634B39;
+  --color-stone-800: #553F30;
+  --color-stone-900: #493529;
+  --color-stone-950: #2E2119;
+  --color-gray-50: #FFF8EA;
+  --color-gray-100: #FFF1D6;
+  --color-gray-200: #F2DDB8;
+  --color-gray-300: #E0C49A;
+  --color-gray-400: #A88A6E;
+  --color-gray-500: #8A6E56;
+  --color-gray-600: #765C47;
+  --color-gray-700: #634B39;
+  --color-gray-800: #553F30;
+  --color-gray-900: #493529;
+  --color-gray-950: #2E2119;
+
+  /* emerald / green / teal → forest + sage */
+  --color-emerald-50: #F1F3EA;
+  --color-emerald-100: #E2E8D6;
+  --color-emerald-200: #C9D3BA;
+  --color-emerald-300: #B1BEA0;
+  --color-emerald-400: #9AA889;
+  --color-emerald-500: #7A8D6B;
+  --color-emerald-600: #627A57;
+  --color-emerald-700: #536B4B;
+  --color-emerald-800: #44583E;
+  --color-emerald-900: #374731;
+  --color-emerald-950: #232E20;
+  --color-green-50: #F1F3EA;
+  --color-green-100: #E2E8D6;
+  --color-green-200: #C9D3BA;
+  --color-green-300: #B1BEA0;
+  --color-green-400: #9AA889;
+  --color-green-500: #7A8D6B;
+  --color-green-600: #627A57;
+  --color-green-700: #536B4B;
+  --color-green-800: #44583E;
+  --color-green-900: #374731;
+  --color-green-950: #232E20;
+  --color-teal-50: #F1F3EA;
+  --color-teal-100: #E2E8D6;
+  --color-teal-200: #C9D3BA;
+  --color-teal-300: #B1BEA0;
+  --color-teal-400: #9AA889;
+  --color-teal-500: #7A8D6B;
+  --color-teal-600: #627A57;
+  --color-teal-700: #536B4B;
+  --color-teal-800: #44583E;
+  --color-teal-900: #374731;
+  --color-teal-950: #232E20;
+
+  /* amber / yellow → light oak + warm wood */
+  --color-amber-50: #FFF8E8;
+  --color-amber-100: #FBEBCB;
+  --color-amber-200: #F3DAAE;
+  --color-amber-300: #E8C69A;
+  --color-amber-400: #E0B070;
+  --color-amber-500: #CF9454;
+  --color-amber-600: #B98250;
+  --color-amber-700: #966641;
+  --color-amber-800: #7A5235;
+  --color-amber-900: #5F402B;
+  --color-amber-950: #3A271A;
+  --color-yellow-50: #FFF8E8;
+  --color-yellow-100: #FBEBCB;
+  --color-yellow-200: #F3DAAE;
+  --color-yellow-300: #E8C69A;
+  --color-yellow-400: #E0B070;
+  --color-yellow-500: #CF9454;
+  --color-yellow-600: #B98250;
+  --color-yellow-700: #966641;
+  --color-yellow-800: #7A5235;
+  --color-yellow-900: #5F402B;
+  --color-yellow-950: #3A271A;
+
+  /* red / rose / orange → terracotta */
+  --color-red-50: #FCF1EB;
+  --color-red-100: #F7DFD3;
+  --color-red-200: #EFC3AE;
+  --color-red-300: #E3A385;
+  --color-red-400: #D68863;
+  --color-red-500: #C96F4A;
+  --color-red-600: #AF5A39;
+  --color-red-700: #8F4830;
+  --color-red-800: #733A28;
+  --color-red-900: #5C2F22;
+  --color-red-950: #391C14;
+  --color-rose-50: #FCF1EB;
+  --color-rose-100: #F7DFD3;
+  --color-rose-200: #EFC3AE;
+  --color-rose-300: #E3A385;
+  --color-rose-400: #D68863;
+  --color-rose-500: #C96F4A;
+  --color-rose-600: #AF5A39;
+  --color-rose-700: #8F4830;
+  --color-rose-800: #733A28;
+  --color-rose-900: #5C2F22;
+  --color-rose-950: #391C14;
+  --color-orange-50: #FCF1EB;
+  --color-orange-100: #F7DFD3;
+  --color-orange-200: #EFC3AE;
+  --color-orange-300: #E3A385;
+  --color-orange-400: #D68863;
+  --color-orange-500: #C96F4A;
+  --color-orange-600: #AF5A39;
+  --color-orange-700: #8F4830;
+  --color-orange-800: #733A28;
+  --color-orange-900: #5C2F22;
+  --color-orange-950: #391C14;
+
+  /* blue / indigo / sky → dusty denim (muted, no neon) */
+  --color-blue-50: #EFF2F0;
+  --color-blue-100: #DDE4E2;
+  --color-blue-200: #C2CECB;
+  --color-blue-300: #A2B3B0;
+  --color-blue-400: #82989A;
+  --color-blue-500: #687F83;
+  --color-blue-600: #56696E;
+  --color-blue-700: #47575C;
+  --color-blue-800: #3B484C;
+  --color-blue-900: #313C3F;
+  --color-blue-950: #1F2628;
+  --color-indigo-50: #EFF2F0;
+  --color-indigo-100: #DDE4E2;
+  --color-indigo-200: #C2CECB;
+  --color-indigo-300: #A2B3B0;
+  --color-indigo-400: #82989A;
+  --color-indigo-500: #687F83;
+  --color-indigo-600: #56696E;
+  --color-indigo-700: #47575C;
+  --color-indigo-800: #3B484C;
+  --color-indigo-900: #313C3F;
+  --color-indigo-950: #1F2628;
+
+  /* purple / pink → dusty plum */
+  --color-purple-50: #F6EFF0;
+  --color-purple-100: #EDDDE0;
+  --color-purple-200: #DCC0C5;
+  --color-purple-300: #C7A0A8;
+  --color-purple-400: #B0828C;
+  --color-purple-500: #976873;
+  --color-purple-600: #7E555F;
+  --color-purple-700: #67464E;
+  --color-purple-800: #553A41;
+  --color-purple-900: #463136;
+  --color-purple-950: #2C1F22;
+  --color-pink-50: #F6EFF0;
+  --color-pink-100: #EDDDE0;
+  --color-pink-200: #DCC0C5;
+  --color-pink-300: #C7A0A8;
+  --color-pink-400: #B0828C;
+  --color-pink-500: #976873;
+  --color-pink-600: #7E555F;
+  --color-pink-700: #67464E;
+  --color-pink-800: #553A41;
+  --color-pink-900: #463136;
+  --color-pink-950: #2C1F22;
+}
+
+:root {
+  --px-ink: #493529;
+  --px-wood: #B98250;
+  --px-wood-dark: #8A5E38;
+  --px-oak: #E8C69A;
+  --px-forest: #536B4B;
+  --px-sage: #9AA889;
+  --px-cream: #FFF1D6;
+  --px-terracotta: #C96F4A;
+  --px-shadow: rgba(73, 53, 41, 0.35);
+
+  /* 32x16 tile of staggered oak floor planks, drawn at 1 unit = 1 pixel and
+     scaled up 4x with nearest-neighbour sampling for crisp edges. */
+  --px-floor-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' shape-rendering='crispEdges'%3E%3Crect width='32' height='16' fill='%23DCAA78'/%3E%3Crect y='7' width='32' height='1' fill='%23B98250'/%3E%3Crect y='15' width='32' height='1' fill='%23B98250'/%3E%3Crect x='20' width='1' height='7' fill='%23B98250'/%3E%3Crect x='4' y='8' width='1' height='7' fill='%23B98250'/%3E%3Crect x='2' y='2' width='6' height='1' fill='%23E8C69A'/%3E%3Crect x='24' y='3' width='4' height='1' fill='%23E8C69A'/%3E%3Crect x='10' y='11' width='7' height='1' fill='%23E8C69A'/%3E%3Crect x='26' y='12' width='3' height='1' fill='%23E8C69A'/%3E%3Crect x='12' y='4' width='3' height='1' fill='%23C9935F'/%3E%3Crect x='20' y='10' width='4' height='1' fill='%23C9935F'/%3E%3Crect y='6' width='32' height='1' fill='%23D19E6C'/%3E%3Crect y='14' width='32' height='1' fill='%23D19E6C'/%3E%3C/svg%3E");
 }
 
 body {
-  background-color: #f8fafc;
+  background-color: var(--px-floor, #DCAA78);
+  background-image: var(--px-floor-tile);
+  background-size: 128px 64px;
+  color: var(--px-ink);
+}
+
+::selection {
+  background: var(--px-sage);
+  color: var(--px-ink);
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -31,6 +263,243 @@ body {
   scrollbar-width: none;
 }
 
+/* Chunky pixel scrollbar for long panels */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--px-wood) var(--px-oak);
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--px-oak);
+  border-left: 4px solid var(--px-ink);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--px-wood);
+  border-left: 4px solid var(--px-ink);
+  border-top: 4px solid var(--px-ink);
+  border-bottom: 4px solid var(--px-ink);
+}
+
+@layer components {
+  /* ------------------------------------------------------------------
+     Pixel outline: four hard shadows leave the corners notched, which is
+     what makes a box read as "pixel art" instead of a plain bordered div.
+     ------------------------------------------------------------------ */
+  .pixel-outline {
+    box-shadow:
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink);
+  }
+
+  /* Parchment panel / framed game card */
+  .pixel-panel {
+    background-color: var(--px-cream);
+    color: var(--px-ink);
+    border-radius: 0;
+    box-shadow:
+      inset -4px -4px 0 0 rgba(185, 130, 80, 0.28),
+      inset 4px 4px 0 0 rgba(255, 255, 255, 0.6),
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink),
+      0 10px 0 0 var(--px-shadow);
+  }
+
+  /* Wooden frame — plank grain baked into the background */
+  .pixel-wood {
+    background-color: var(--px-wood);
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0 10px,
+        rgba(73, 53, 41, 0.28) 10px 12px
+      ),
+      repeating-linear-gradient(
+        to right,
+        transparent 0 36px,
+        rgba(232, 198, 154, 0.25) 36px 44px,
+        transparent 44px 80px
+      );
+    color: var(--px-cream);
+    border-radius: 0;
+    box-shadow:
+      inset -4px -4px 0 0 rgba(73, 53, 41, 0.35),
+      inset 4px 4px 0 0 rgba(232, 198, 154, 0.45),
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink),
+      0 10px 0 0 var(--px-shadow);
+  }
+
+  /* In-game signboard: wood plank with cream pixel lettering + two nails */
+  .pixel-sign {
+    position: relative;
+    font-family: var(--font-pixel);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pixel-sign::before,
+  .pixel-sign::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--px-ink);
+    box-shadow: inset 2px 2px 0 0 rgba(232, 198, 154, 0.6);
+  }
+  .pixel-sign::before { left: 8px; }
+  .pixel-sign::after { right: 8px; }
+
+  /* Retro menu button with bevel + pressed state */
+  .pixel-btn {
+    --btn-bg: var(--px-cream);
+    --btn-fg: var(--px-ink);
+    --btn-hover: var(--px-oak);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--btn-fg);
+    background-color: var(--btn-bg);
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+    box-shadow:
+      inset -4px -4px 0 0 rgba(73, 53, 41, 0.22),
+      inset 4px 4px 0 0 rgba(255, 255, 255, 0.45),
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink),
+      0 8px 0 0 var(--px-shadow);
+    transition:
+      transform 90ms steps(2),
+      background-color 120ms steps(2),
+      box-shadow 90ms steps(2);
+  }
+  .pixel-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+    box-shadow:
+      inset -4px -4px 0 0 rgba(73, 53, 41, 0.22),
+      inset 4px 4px 0 0 rgba(255, 255, 255, 0.45),
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink),
+      0 10px 0 0 var(--px-shadow);
+  }
+  .pixel-btn:active {
+    transform: translateY(4px);
+    box-shadow:
+      inset 4px 4px 0 0 rgba(73, 53, 41, 0.28),
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink);
+  }
+  .pixel-btn:focus-visible {
+    outline: 3px dashed var(--px-terracotta);
+    outline-offset: 7px;
+  }
+  .pixel-btn:disabled {
+    cursor: default;
+    opacity: 0.55;
+    transform: none;
+  }
+  .pixel-btn--oak { --btn-bg: var(--px-oak); --btn-hover: #F3DAAE; }
+  .pixel-btn--sage { --btn-bg: var(--px-sage); --btn-hover: #B1BEA0; }
+  .pixel-btn--forest { --btn-bg: var(--px-forest); --btn-fg: var(--px-cream); --btn-hover: #627A57; }
+  .pixel-btn--terracotta { --btn-bg: var(--px-terracotta); --btn-fg: var(--px-cream); --btn-hover: #D68863; }
+  .pixel-btn--wood { --btn-bg: var(--px-wood); --btn-fg: var(--px-cream); --btn-hover: #CF9454; }
+
+  /* Sunken inventory slot */
+  .pixel-slot {
+    background-color: var(--px-oak);
+    border-radius: 0;
+    box-shadow:
+      inset 4px 4px 0 0 rgba(73, 53, 41, 0.25),
+      inset -4px -4px 0 0 rgba(255, 241, 214, 0.7),
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink),
+      0 8px 0 0 var(--px-shadow);
+  }
+
+  /* RPG dialogue box */
+  .pixel-dialog {
+    background-color: var(--px-cream);
+    color: var(--px-ink);
+    border-radius: 0;
+    box-shadow:
+      inset 0 -4px 0 0 rgba(185, 130, 80, 0.3),
+      0 -4px 0 0 var(--px-ink),
+      0 4px 0 0 var(--px-ink),
+      -4px 0 0 0 var(--px-ink),
+      4px 0 0 0 var(--px-ink),
+      0 8px 0 0 var(--px-shadow);
+  }
+
+  /* Small inventory-style badge / tag */
+  .pixel-badge {
+    font-family: var(--font-pixel);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0;
+    box-shadow:
+      0 -2px 0 0 var(--px-ink),
+      0 2px 0 0 var(--px-ink),
+      -2px 0 0 0 var(--px-ink),
+      2px 0 0 0 var(--px-ink),
+      0 5px 0 0 var(--px-shadow);
+  }
+
+  /* Checkerboard textures (rugs, mats, map) */
+  .pixel-checker-sage {
+    background-color: #8E9D7D;
+    background-image:
+      linear-gradient(45deg, #9AA889 25%, transparent 25%, transparent 75%, #9AA889 75%),
+      linear-gradient(45deg, #9AA889 25%, transparent 25%, transparent 75%, #9AA889 75%);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+  }
+  .pixel-checker-cream {
+    background-color: #F3E2BF;
+    background-image:
+      linear-gradient(45deg, #FFF1D6 25%, transparent 25%, transparent 75%, #FFF1D6 75%),
+      linear-gradient(45deg, #FFF1D6 25%, transparent 25%, transparent 75%, #FFF1D6 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 8px;
+  }
+
+  /* Ruled parchment for journals / notes */
+  .pixel-ruled {
+    background-color: var(--px-cream);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 26px,
+      rgba(185, 130, 80, 0.25) 26px 28px
+    );
+  }
+
+  .pixel-crisp {
+    image-rendering: pixelated;
+    shape-rendering: crispEdges;
+  }
+}
+
 /* Loading screen infinite animations (CSS so they don't block framer's exit) */
 @keyframes ls-spin {
   to {
@@ -40,10 +509,10 @@ body {
 @keyframes ls-twinkle {
   0%,
   100% {
-    transform: scale(0.7) rotate(0deg);
+    transform: scale(0.7);
   }
   50% {
-    transform: scale(1.1) rotate(90deg);
+    transform: scale(1.1);
   }
 }
 @keyframes ls-pulse {
@@ -55,13 +524,29 @@ body {
     opacity: 0.3;
   }
 }
+/* Pixel blink: hard on/off, no easing */
+@keyframes px-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
 .ls-spin {
   animation: ls-spin 26s linear infinite;
   transform-origin: center;
 }
 .ls-twinkle {
-  animation: ls-twinkle 2.4s ease-in-out infinite;
+  animation: ls-twinkle 2.4s steps(4) infinite;
 }
 .ls-pulse {
-  animation: ls-pulse 1.2s ease-in-out infinite;
+  animation: ls-pulse 1.2s steps(2) infinite;
+}
+.px-blink {
+  animation: px-blink 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ls-twinkle,
+  .ls-pulse,
+  .px-blink {
+    animation: none;
+  }
 }

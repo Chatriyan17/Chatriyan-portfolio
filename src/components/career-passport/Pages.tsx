@@ -4,7 +4,7 @@ import { User, MapPin, Briefcase, GraduationCap, Award, ShieldCheck, Flame, Meda
 
 export function IdentityPage() {
     return (
-        <div className="w-full h-full p-8 flex flex-col relative bg-[#fdfbf7] font-serif overflow-hidden">
+        <div className="w-full h-full p-8 flex flex-col relative bg-[#FFF1D6] font-serif overflow-hidden">
             <PageTexture />
             
             <div className="flex justify-between items-start mb-6">
@@ -12,14 +12,14 @@ export function IdentityPage() {
                     <div className="w-8 h-8 rounded-full border-[3px] border-slate-900 flex items-center justify-center opacity-50">
                         <User className="w-4 h-4 text-slate-500" />
                     </div>
-                    <div className="font-bold text-xs tracking-widest text-slate-500">IDENTITY PAGE</div>
+                    <div className="font-pixel font-semibold text-sm tracking-widest text-slate-500">IDENTITY PAGE</div>
                 </div>
                 <div className="font-mono text-xs font-bold text-slate-400 tracking-widest">P&lt;IND</div>
             </div>
 
             <div className="flex gap-6 z-10 flex-1">
                 <div className="w-[120px] shrink-0 flex flex-col">
-                    <div className="w-[120px] h-[150px] border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] p-1 bg-white rotate-[-2deg] shadow-sm mb-4">
+                    <div className="w-[120px] h-[150px] border-[3px] border-slate-900 shadow-[4px_4px_0px_#493529] p-1 bg-white rotate-[-2deg] shadow-sm mb-4">
                         <div className="w-full h-full bg-slate-200 overflow-hidden relative">
                             {/* Passport photo placeholder or actual image */}
                             <img src="/profile-photo.png" alt="Photo" className="w-full h-full object-cover grayscale opacity-90 contrast-125" draggable={false} />
@@ -95,16 +95,16 @@ export function IdentityPage() {
 
 export function EducationPage() {
     return (
-        <div className="w-full h-full p-6 sm:p-8 flex flex-col relative bg-[#fdfbf7] font-serif overflow-hidden">
+        <div className="w-full h-full p-6 sm:p-8 flex flex-col relative bg-[#FFF1D6] font-serif overflow-hidden">
             <PageTexture />
             
-            <div className="text-center font-bold text-xs tracking-widest text-slate-400 mb-6 z-10 uppercase">
+            <div className="text-center font-pixel font-semibold text-sm tracking-widest text-slate-500 mb-6 z-10 uppercase">
                 Education Visas
             </div>
 
             <div className="flex-1 flex flex-col gap-4 z-10">
                 {/* Visa 1 */}
-                <div className="relative border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-md p-3 sm:p-4 bg-emerald-50/30 overflow-hidden group">
+                <div className="relative border-[3px] border-slate-900 shadow-[4px_4px_0px_#493529] rounded-md p-3 sm:p-4 bg-emerald-50/30 overflow-hidden group">
                     <div className="absolute -right-4 -top-4 text-emerald-800/10">
                         <GraduationCap className="w-24 h-24 rotate-12" strokeWidth={1} />
                     </div>
@@ -145,7 +145,7 @@ export function EducationPage() {
                 </div>
 
                 {/* Visa 2 */}
-                <div className="relative border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-md p-3 sm:p-4 bg-blue-50/30 overflow-hidden group">
+                <div className="relative border-[3px] border-slate-900 shadow-[4px_4px_0px_#493529] rounded-md p-3 sm:p-4 bg-blue-50/30 overflow-hidden group">
                     <div className="absolute -left-4 -bottom-4 text-blue-800/10">
                         <GraduationCap className="w-24 h-24 -rotate-12" strokeWidth={1} />
                     </div>
@@ -179,7 +179,7 @@ export function EducationPage() {
                 </div>
 
                 {/* Visa 3 */}
-                <div className="relative border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-md p-2 bg-slate-50/30 overflow-hidden group">
+                <div className="relative border-[3px] border-slate-900 shadow-[4px_4px_0px_#493529] rounded-md p-2 bg-slate-50/30 overflow-hidden group">
                     <div className="flex justify-between items-center relative z-10">
                         <div>
                             <h3 className="font-bold text-sm text-slate-900 leading-tight">Higher Secondary</h3>
@@ -196,7 +196,7 @@ export function EducationPage() {
                 </div>
             </div>
             
-            <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-slate-400 font-mono tracking-widest">
+            <div className="absolute bottom-4 left-0 w-full text-center font-pixel text-[11px] text-slate-500 tracking-widest">
                 PAGE 2
             </div>
         </div>
@@ -205,10 +205,10 @@ export function EducationPage() {
 
 export function ExperiencePage() {
     return (
-        <div className="w-full h-full p-6 sm:p-8 flex flex-col relative bg-[#fdfbf7] font-serif overflow-hidden">
+        <div className="w-full h-full p-6 sm:p-8 flex flex-col relative bg-[#FFF1D6] font-serif overflow-hidden">
             <PageTexture />
             
-            <div className="text-center font-bold text-xs tracking-widest text-slate-400 mb-4 z-10 uppercase">
+            <div className="text-center font-pixel font-semibold text-sm tracking-widest text-slate-500 mb-4 z-10 uppercase">
                 Professional Journey
             </div>
 
@@ -287,7 +287,7 @@ export function ExperiencePage() {
                 </div>
             </div>
             
-            <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-slate-400 font-mono tracking-widest">
+            <div className="absolute bottom-4 left-0 w-full text-center font-pixel text-[11px] text-slate-500 tracking-widest">
                 PAGE 3
             </div>
         </div>
@@ -296,10 +296,10 @@ export function ExperiencePage() {
 
 export function SkillsPage() {
     return (
-        <div className="w-full h-full p-8 flex flex-col relative bg-[#fdfbf7] font-serif overflow-hidden">
+        <div className="w-full h-full p-8 flex flex-col relative bg-[#FFF1D6] font-serif overflow-hidden">
             <PageTexture />
             
-            <div className="text-center font-bold text-xs tracking-widest text-slate-400 mb-4 z-10 uppercase">
+            <div className="text-center font-pixel font-semibold text-sm tracking-widest text-slate-500 mb-4 z-10 uppercase">
                 Skill Entry Stamps
             </div>
 
@@ -374,7 +374,7 @@ export function SkillsPage() {
                 </Stamp>
             </div>
             
-            <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-slate-400 font-mono tracking-widest">
+            <div className="absolute bottom-4 left-0 w-full text-center font-pixel text-[11px] text-slate-500 tracking-widest">
                 PAGE 4
             </div>
         </div>
@@ -383,10 +383,10 @@ export function SkillsPage() {
 
 export function CertificatesPage() {
     return (
-        <div className="w-full h-full p-8 flex flex-col relative bg-[#fdfbf7] font-serif overflow-hidden">
+        <div className="w-full h-full p-8 flex flex-col relative bg-[#FFF1D6] font-serif overflow-hidden">
             <PageTexture />
             
-            <div className="text-center font-bold text-xs tracking-widest text-slate-400 mb-6 z-10 uppercase">
+            <div className="text-center font-pixel font-semibold text-sm tracking-widest text-slate-500 mb-6 z-10 uppercase">
                 Official Certifications
             </div>
 
@@ -450,7 +450,7 @@ export function CertificatesPage() {
                 </div>
             </div>
             
-            <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-slate-400 font-mono tracking-widest">
+            <div className="absolute bottom-4 left-0 w-full text-center font-pixel text-[11px] text-slate-500 tracking-widest">
                 PAGE 5
             </div>
         </div>
@@ -459,10 +459,10 @@ export function CertificatesPage() {
 
 export function AchievementsPage() {
     return (
-        <div className="w-full h-full p-8 flex flex-col relative bg-[#fdfbf7] font-serif overflow-hidden">
+        <div className="w-full h-full p-8 flex flex-col relative bg-[#FFF1D6] font-serif overflow-hidden">
             <PageTexture />
             
-            <div className="text-center font-bold text-xs tracking-widest text-slate-400 mb-6 z-10 uppercase">
+            <div className="text-center font-pixel font-semibold text-sm tracking-widest text-slate-500 mb-6 z-10 uppercase">
                 Achievements & Interests
             </div>
 
@@ -486,35 +486,35 @@ export function AchievementsPage() {
                 <div className="border-t-[3px] border-slate-900 pt-4 mt-2">
                     <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Travel Stickers (Interests)</div>
                     <div className="flex flex-wrap gap-3">
-                        <div className="w-10 h-10 rounded-full bg-blue-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[-10deg] shadow-sm relative group">
+                        <div className="w-10 h-10 rounded-full bg-blue-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[-10deg] shadow-sm relative group">
                             <Camera className="w-5 h-5 text-blue-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Photography</div>
                         </div>
-                        <div className="w-12 h-8 bg-red-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[5deg] shadow-sm relative group" style={{ clipPath: 'polygon(10% 0, 100% 0, 90% 100%, 0 100%)' }}>
+                        <div className="w-12 h-8 bg-red-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[5deg] shadow-sm relative group" style={{ clipPath: 'polygon(10% 0, 100% 0, 90% 100%, 0 100%)' }}>
                             <Plane className="w-4 h-4 text-red-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Travel</div>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-emerald-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[15deg] shadow-sm relative group">
+                        <div className="w-10 h-10 rounded-full bg-emerald-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[15deg] shadow-sm relative group">
                             <Book className="w-4 h-4 text-emerald-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Books</div>
                         </div>
-                        <div className="w-10 h-10 rounded bg-purple-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[-5deg] shadow-sm relative group">
+                        <div className="w-10 h-10 rounded bg-purple-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[-5deg] shadow-sm relative group">
                             <Film className="w-5 h-5 text-purple-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Film Enthusiast</div>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-orange-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[20deg] shadow-sm relative group">
+                        <div className="w-10 h-10 rounded-full bg-orange-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[20deg] shadow-sm relative group">
                             <Navigation className="w-4 h-4 text-orange-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Badminton</div>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-slate-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[-15deg] shadow-sm relative group">
+                        <div className="w-10 h-10 rounded-full bg-slate-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[-15deg] shadow-sm relative group">
                             <Dumbbell className="w-4 h-4 text-slate-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Fitness</div>
                         </div>
-                        <div className="w-10 h-10 bg-yellow-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[10deg] shadow-sm relative group">
+                        <div className="w-10 h-10 bg-yellow-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[10deg] shadow-sm relative group">
                             <Sparkles className="w-5 h-5 text-yellow-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Meditation</div>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-pink-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] flex items-center justify-center rotate-[-20deg] shadow-sm relative group">
+                        <div className="w-10 h-10 rounded-full bg-pink-100 border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] flex items-center justify-center rotate-[-20deg] shadow-sm relative group">
                             <Gamepad className="w-5 h-5 text-pink-600" />
                             <div className="absolute -bottom-4 opacity-0 group-hover:opacity-100 text-[8px] font-mono whitespace-nowrap bg-white px-1 border border-slate-200 z-20">Video Games</div>
                         </div>
@@ -528,7 +528,7 @@ export function AchievementsPage() {
                 </div>
             </div>
             
-            <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-slate-400 font-mono tracking-widest">
+            <div className="absolute bottom-4 left-0 w-full text-center font-pixel text-[11px] text-slate-500 tracking-widest">
                 PAGE 6
             </div>
         </div>

@@ -7,37 +7,38 @@ import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 
 /**
- * Brutalist black & white "Portfolio" loading screen.
- * Recreates the poster wordmark inside a browser window with a halftone
- * background, decorative sparkles / circles / dashed orbits and cursor arrows,
- * then draws + pops everything in before the portfolio takes over.
+ * Cozy pixel-art "Portfolio" title screen.
+ * A parchment game window on the oak floor with a pixel wordmark, pixel
+ * sparkles / blocks / dashed orbits and cursor arrows, and a segmented
+ * loading bar, all popped in before the portfolio takes over.
  */
 
 const WORD = 'Portfolio';
 
-// Four-point sparkle path (star / twinkle)
+// Pixel four-point sparkle (twinkle)
 function Sparkle({ size = 28 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
-      <path
-        d="M20 0 C22 13 27 18 40 20 C27 22 22 27 20 40 C18 27 13 22 0 20 C13 18 18 13 20 0 Z"
-        fill="#0f172a"
-      />
+    <svg width={size} height={size} viewBox="0 0 7 7" shapeRendering="crispEdges">
+      <rect x="3" y="0" width="1" height="7" fill="#493529" />
+      <rect x="0" y="3" width="7" height="1" fill="#493529" />
+      <rect x="2" y="2" width="3" height="3" fill="#493529" />
+      <rect x="3" y="3" width="1" height="1" fill="#E8C69A" />
     </svg>
   );
 }
 
-// Little cursor / pointer arrow
+// Little pixel cursor / pointer arrow
+const CURSOR_ROWS = ['X', 'XX', 'XoX', 'XooX', 'XoooX', 'XooooX', 'XoooXXX', 'XoXoX', 'XX.XoX', '....XX'];
 function Cursor({ size = 30 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path
-        d="M4 2 L4 20 L9 15 L12.5 22.5 L15.5 21 L12 13.5 L19 13.5 Z"
-        fill="#0f172a"
-        stroke="#0f172a"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
+    <svg width={size} height={size} viewBox="0 0 10 10" shapeRendering="crispEdges">
+      {CURSOR_ROWS.flatMap((row, y) =>
+        row.split('').map((ch, x) =>
+          ch === '.' ? null : (
+            <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill={ch === 'X' ? '#493529' : '#FFF1D6'} />
+          ),
+        ),
+      )}
     </svg>
   );
 }
@@ -81,8 +82,10 @@ export default function LoadingScreen() {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-white"
+      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-[#DCAA78]"
       style={{
+        backgroundImage: 'var(--px-floor-tile)',
+        backgroundSize: '128px 64px',
         transition: 'opacity 0.55s ease, filter 0.55s ease, transform 0.55s ease',
         opacity: exiting ? 0 : 1,
         filter: exiting ? 'blur(6px)' : 'none',
@@ -104,41 +107,35 @@ export default function LoadingScreen() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <svg className="ls-spin h-full w-full" viewBox="0 0 500 500" fill="none">
-            <ellipse cx="250" cy="250" rx="210" ry="150" stroke="#0f172a" strokeWidth="2" strokeDasharray="6 12" opacity="0.5" />
-            <ellipse cx="250" cy="250" rx="160" ry="200" stroke="#0f172a" strokeWidth="2" strokeDasharray="4 14" opacity="0.3" transform="rotate(30 250 250)" />
+            <ellipse cx="250" cy="250" rx="210" ry="150" stroke="#493529" strokeWidth="2" strokeDasharray="6 12" opacity="0.5" />
+            <ellipse cx="250" cy="250" rx="160" ry="200" stroke="#493529" strokeWidth="2" strokeDasharray="4 14" opacity="0.3" transform="rotate(30 250 250)" />
           </svg>
         </motion.div>
 
         {/* ---- Browser window frame ---- */}
         <motion.div
-          className="relative rounded-2xl border-[3px] border-slate-900 bg-white shadow-[10px_10px_0px_#0f172a] overflow-hidden"
+          className="relative pixel-panel"
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 200, damping: 22 }}
         >
           {/* title bar */}
-          <div className="flex items-center justify-between border-b-[3px] border-slate-900 px-5 py-3">
-            <div className="flex items-center gap-3 text-slate-900">
+          <div className="flex items-center justify-between border-b-4 border-slate-900 px-5 py-3 pixel-wood" style={{ boxShadow: 'none' }}>
+            <div className="flex items-center gap-3 text-[#FFF1D6]">
               <span className="text-xl font-black leading-none">–</span>
               <span className="text-lg font-black leading-none">✕</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-full border-2 border-slate-900" />
-              <span className="h-2.5 w-2.5 rounded-full border-2 border-slate-900" />
-              <span className="h-2.5 w-2.5 rounded-full border-2 border-slate-900" />
+              <span className="h-3 w-3 border-2 border-slate-900 bg-[#9AA889]" />
+              <span className="h-3 w-3 border-2 border-slate-900 bg-[#E8C69A]" />
+              <span className="h-3 w-3 border-2 border-slate-900 bg-[#C96F4A]" />
             </div>
           </div>
 
           {/* halftone dotted canvas */}
           <div
-            className="relative flex items-center justify-center px-6 py-14 sm:py-20"
-            style={{
-              backgroundImage: 'radial-gradient(#0f172a 1.4px, transparent 1.6px)',
-              backgroundSize: '16px 16px',
-            }}
+            className="relative flex items-center justify-center px-6 py-14 sm:py-20 pixel-checker-cream"
           >
-            {/* soft white vignette so the wordmark stays legible over dots */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,white_35%,transparent_75%)]" />
 
             {/* Portfolio wordmark */}
             <h1 className="relative flex select-none">
@@ -146,10 +143,10 @@ export default function LoadingScreen() {
                 <motion.span
                   key={i}
                   variants={letter}
-                  className="font-sans text-[13vw] font-black leading-none tracking-tight text-slate-900 sm:text-[92px]"
+                  className="font-pixel text-[13vw] font-bold leading-none tracking-normal text-slate-900 sm:text-[92px]"
                   style={{
-                    WebkitTextStroke: i % 3 === 1 ? '2px #0f172a' : undefined,
-                    color: i % 3 === 1 ? 'transparent' : '#0f172a',
+                    color: i % 3 === 1 ? '#C96F4A' : '#493529',
+                    textShadow: '5px 5px 0 #E8C69A',
                   }}
                 >
                   {ch}
@@ -161,13 +158,13 @@ export default function LoadingScreen() {
 
         {/* ---- Floating decorations ---- */}
         {/* filled circle top-left */}
-        <motion.span variants={pop} className="absolute -left-4 -top-6 h-10 w-10 rounded-full bg-slate-900" />
+        <motion.span variants={pop} className="absolute -left-4 -top-6 h-10 w-10 bg-[#536B4B] pixel-outline" />
         {/* outlined circle top-left inner */}
-        <motion.span variants={pop} className="absolute left-8 -top-9 h-6 w-6 rounded-full border-[3px] border-slate-900 bg-white" />
+        <motion.span variants={pop} className="absolute left-8 -top-9 h-6 w-6 border-4 border-slate-900 bg-white" />
         {/* filled circle top-center */}
-        <motion.span variants={pop} className="absolute left-1/2 -top-8 h-7 w-7 -translate-x-1/2 rounded-full bg-slate-900" />
+        <motion.span variants={pop} className="absolute left-1/2 -top-8 h-7 w-7 -translate-x-1/2 bg-[#C96F4A] pixel-outline" />
         {/* half-tone dot cluster right */}
-        <motion.span variants={pop} className="absolute -right-5 top-6 h-5 w-5 rounded-full border-[3px] border-slate-900 bg-white" />
+        <motion.span variants={pop} className="absolute -right-5 top-6 h-5 w-5 border-4 border-slate-900 bg-[#E8C69A]" />
 
         {/* sparkles */}
         <motion.span variants={pop} className="absolute -left-8 top-1/2"><Sparkle size={34} /></motion.span>
@@ -190,13 +187,14 @@ export default function LoadingScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
         >
-          <div className="mb-2 flex items-center justify-between font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-slate-900">
+          <div className="mb-3 flex items-center justify-between font-pixel text-[13px] font-semibold uppercase tracking-[0.2em] text-slate-900">
             <span>Chatriyan</span>
             <span className="ls-pulse">Loading…</span>
           </div>
-          <div className="h-3 w-full overflow-hidden rounded-full border-[3px] border-slate-900 bg-white">
+          <div className="h-6 w-full overflow-hidden bg-white p-1 pixel-outline">
             <motion.div
-              className="h-full rounded-full bg-slate-900"
+              className="h-full"
+              style={{ backgroundImage: 'repeating-linear-gradient(90deg, #536B4B 0 12px, transparent 12px 16px)' }}
               initial={{ width: '0%' }}
               animate={{ width: '100%' }}
               transition={{ duration: 2.1, ease: [0.22, 1, 0.36, 1] }}

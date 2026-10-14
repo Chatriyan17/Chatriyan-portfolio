@@ -33,11 +33,11 @@ export function PageTexture() {
             
             {/* Security fibers */}
             <svg className="absolute inset-0 w-full h-full opacity-30">
-                <path d="M 10 50 Q 20 20 50 10" stroke="#f87171" strokeWidth="0.5" fill="none" />
-                <path d="M 150 200 Q 180 250 200 220" stroke="#60a5fa" strokeWidth="0.5" fill="none" />
-                <path d="M 300 80 Q 320 100 350 90" stroke="#f87171" strokeWidth="0.5" fill="none" />
-                <path d="M 400 300 Q 380 320 420 350" stroke="#60a5fa" strokeWidth="0.5" fill="none" />
-                <path d="M 50 400 Q 80 380 100 420" stroke="#f87171" strokeWidth="0.5" fill="none" />
+                <path d="M 10 50 Q 20 20 50 10" stroke="#C96F4A" strokeWidth="0.5" fill="none" />
+                <path d="M 150 200 Q 180 250 200 220" stroke="#536B4B" strokeWidth="0.5" fill="none" />
+                <path d="M 300 80 Q 320 100 350 90" stroke="#C96F4A" strokeWidth="0.5" fill="none" />
+                <path d="M 400 300 Q 380 320 420 350" stroke="#536B4B" strokeWidth="0.5" fill="none" />
+                <path d="M 50 400 Q 80 380 100 420" stroke="#C96F4A" strokeWidth="0.5" fill="none" />
             </svg>
         </div>
     );

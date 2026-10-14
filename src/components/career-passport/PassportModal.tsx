@@ -6,14 +6,14 @@ import { IdentityPage, EducationPage, ExperiencePage, SkillsPage, CertificatesPa
 import { PageTexture } from './shared';
 
 const PAGES = [
-    { id: 'cover-inside', component: () => <div className="w-full h-full bg-[#e5e5e5] border-r-[3px] border-slate-900 shadow-[-8px_0_0_#0f172a_inset] relative overflow-hidden"><PageTexture /></div> },
+    { id: 'cover-inside', component: () => <div className="w-full h-full bg-[#536B4B] border-r-4 border-slate-900 shadow-[-8px_0_0_#493529_inset] relative overflow-hidden"><PageTexture /></div> },
     { id: 'identity', component: IdentityPage, tab: 'PROFILE' },
     { id: 'education', component: EducationPage, tab: 'EDUCATION' },
     { id: 'experience', component: ExperiencePage, tab: 'EXPERIENCE' },
     { id: 'skills', component: SkillsPage, tab: 'SKILLS' },
     { id: 'certificates', component: CertificatesPage, tab: 'CERTIFICATES' },
     { id: 'achievements', component: AchievementsPage, tab: 'ACHIEVEMENTS' },
-    { id: 'back-inside', component: () => <div className="w-full h-full bg-[#e5e5e5] shadow-[8px_0_0_#0f172a_inset] relative overflow-hidden"><PageTexture /></div> }
+    { id: 'back-inside', component: () => <div className="w-full h-full bg-[#536B4B] shadow-[8px_0_0_#493529_inset] relative overflow-hidden"><PageTexture /></div> }
 ];
 
 export function PassportModal({ onClose, closing }: { onClose: () => void; closing: boolean }) {
@@ -68,9 +68,9 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                 AnimatePresence's exit-completion callback (see CLOSE_ANIMATION_MS comment). */}
             <motion.div
                 initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                animate={closing ? { opacity: 0, backdropFilter: 'blur(0px)' } : { opacity: 1, backdropFilter: 'blur(12px)' }}
+                animate={closing ? { opacity: 0, backdropFilter: 'blur(0px)' } : { opacity: 1, backdropFilter: 'blur(0px)' }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="absolute inset-0 bg-slate-900/40 pointer-events-auto"
+                className="absolute inset-0 bg-slate-900/55 pointer-events-auto"
                 onClick={onClose}
             />
 
@@ -84,7 +84,7 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                 {/* Close Button */}
                 <motion.button 
                     onClick={onClose}
-                    className="absolute -top-12 right-0 w-10 h-10 bg-red-500 hover:bg-red-400 border-[3px] border-slate-900 rounded-none flex items-center justify-center text-slate-900 shadow-[4px_4px_0px_#0f172a] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] transition-all"
+                    className="pixel-btn pixel-btn--terracotta absolute -top-14 right-0 w-10 h-10"
                 >
                     <X className="w-6 h-6 stroke-[3]" />
                 </motion.button>
@@ -92,10 +92,10 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                 {/* The Passport Book Spread */}
                 <motion.div
                     layoutId="passport-cover"
-                    className="w-full h-full bg-[#e5e5e5] rounded-none shadow-[16px_16px_0px_#0f172a] flex relative overflow-visible border-[3px] border-slate-900"
+                    className="w-full h-full bg-[#536B4B] rounded-none shadow-[0_0_0_4px_#493529,0_20px_0_4px_rgba(73,53,41,0.4)] flex relative overflow-visible"
                 >
                     {/* Bookmark Ribbon */}
-                    <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-8 h-32 bg-[#0A66C2] z-0 border-x-[3px] border-b-[3px] border-slate-900 shadow-[8px_8px_0px_#0f172a]" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%)' }} />
+                    <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-8 h-32 bg-[#C96F4A] z-0 border-x-[3px] border-b-[3px] border-slate-900 shadow-[8px_8px_0px_#493529]" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%)' }} />
 
                     {/* Left Pages Stack (simulating thickness) */}
                     <div className="absolute top-2 bottom-2 left-2 w-[5px] bg-white rounded-none border-y-[3px] border-l-[3px] border-slate-900 z-0" />
@@ -106,7 +106,7 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                     {/* Spread Container */}
                     <div className="relative w-full h-full flex p-2 z-10 overflow-visible">
                         {/* Center Spine Crease */}
-                        <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[24px] bg-gradient-to-r from-transparent via-black/30 to-transparent z-50 pointer-events-none mix-blend-multiply" />
+                        <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[8px] bg-[#493529]/30 z-50 pointer-events-none" />
                         <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[4px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-50 pointer-events-none" />
 
                         {/* Page Tabs */}
@@ -123,13 +123,13 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                                         key={tab}
                                         className={`w-full py-3 px-1 border-[3px] border-slate-900 border-l-0 rounded-r-md shadow-sm flex items-center justify-center cursor-pointer transition-all ${isPast ? 'opacity-0' : 'opacity-100'}`}
                                         style={{
-                                            backgroundColor: isActive ? '#fdfbf7' : '#cbd5e1',
+                                            backgroundColor: isActive ? '#FFF1D6' : '#E8C69A',
                                             transformOrigin: 'left center',
                                             transform: isActive ? 'scaleX(1.1)' : 'scaleX(1)'
                                         }}
                                         onClick={() => setCurrentSpread(spreadIndex)}
                                     >
-                                        <div className="text-[9px] font-bold text-slate-500 uppercase tracking-widest" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+                                        <div className="font-pixel text-[10px] font-semibold text-slate-700 uppercase tracking-widest" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
                                             {tab}
                                         </div>
                                     </div>
@@ -138,12 +138,12 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                         </div>
 
                         {/* Left Page content */}
-                        <div className="flex-1 relative bg-[#fdfbf7] rounded-none border-l-[3px] border-y-[3px] border-slate-900 overflow-hidden shadow-[inset_-10px_0_20px_rgba(0,0,0,0.05)] transform origin-right perspective-[1500px]">
+                        <div className="flex-1 relative bg-[#FFF1D6] rounded-none border-l-[3px] border-y-[3px] border-slate-900 overflow-hidden shadow-[inset_-10px_0_20px_rgba(0,0,0,0.05)] transform origin-right perspective-[1500px]">
                             {LeftComponent && <LeftComponent />}
                         </div>
 
                         {/* Right Page content */}
-                        <div className="flex-1 relative bg-[#fdfbf7] rounded-none border-r-[3px] border-y-[3px] border-slate-900 overflow-hidden shadow-[8px_0_0_#0f172a_inset] transform origin-left perspective-[1500px]">
+                        <div className="flex-1 relative bg-[#FFF1D6] rounded-none border-r-[3px] border-y-[3px] border-slate-900 overflow-hidden shadow-[8px_0_0_#493529_inset] transform origin-left perspective-[1500px]">
                             <AnimatePresence mode="popLayout" custom={direction} initial={false}>
                                 <motion.div
                                     key={currentSpread}
@@ -169,7 +169,7 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                                     <motion.div
                                         aria-hidden
                                         className="pointer-events-none absolute inset-0 origin-left"
-                                        style={{ background: 'linear-gradient(to right, rgba(15,23,42,0.45), rgba(15,23,42,0) 42%)' }}
+                                        style={{ background: 'linear-gradient(to right, rgba(73,53,41,0.45), rgba(73,53,41,0) 42%)' }}
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: [0, 0.5, 0] }}
                                         transition={{ duration: 0.4, ease: 'easeInOut', times: [0, 0.42, 1] }}
@@ -185,19 +185,19 @@ export function PassportModal({ onClose, closing }: { onClose: () => void; closi
                     <button 
                         onClick={handlePrev} 
                         disabled={currentSpread === 0}
-                        className="flex items-center gap-2 px-4 py-2 bg-white border-[3px] border-slate-900 rounded-none hover:-translate-y-1 hover:shadow-[4px_4px_0px_#0f172a] transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none shadow-[2px_2px_0px_#0f172a] font-bold"
+                        className="pixel-btn px-4 py-2 text-sm"
                     >
                         <ChevronLeft className="w-4 h-4" /> PREV
                     </button>
                     
-                    <div className="font-mono text-sm tracking-widest bg-slate-200 px-4 py-2 rounded-none border-[3px] border-slate-900 shadow-[2px_2px_0px_#0f172a] font-bold">
+                    <div className="pixel-dialog font-pixel text-sm tracking-widest bg-[#E8C69A] px-4 py-2 font-semibold">
                         {Math.min(currentSpread * 2, 6)} / 6
                     </div>
 
                     <button 
                         onClick={handleNext} 
                         disabled={currentSpread === totalSpreads - 1}
-                        className="flex items-center gap-2 px-4 py-2 bg-white border-[3px] border-slate-900 rounded-none hover:-translate-y-1 hover:shadow-[4px_4px_0px_#0f172a] transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none shadow-[2px_2px_0px_#0f172a] font-bold"
+                        className="pixel-btn px-4 py-2 text-sm"
                     >
                         NEXT <ChevronRight className="w-4 h-4" />
                     </button>

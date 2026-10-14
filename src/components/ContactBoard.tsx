@@ -68,37 +68,37 @@ function MessageNote({ platform, icon, title, helperText, rotate, href }: Messag
 
   return (
     <motion.div 
-      className="bg-[#fdfbf7] w-full sm:w-[320px] lg:w-[260px] lg:h-[360px] p-5 shadow-[8px_8px_0px_#0f172a] border-[3px] border-slate-900 flex flex-col relative pointer-events-auto shrink-0 group rounded-md"
+      className="pixel-panel w-full sm:w-[320px] lg:w-[260px] lg:h-[360px] p-5 flex flex-col relative pointer-events-auto shrink-0 group"
       style={{ rotate }}
       whileHover={{ 
         scale: 1.02, 
         rotate: rotate > 0 ? rotate + 1 : rotate - 1, 
         y: -8,
         zIndex: 10,
-        boxShadow: "12px 12px 0px #0f172a"
+        boxShadow: "inset -4px -4px 0 0 rgba(185,130,80,0.28), inset 4px 4px 0 0 rgba(255,255,255,0.6), 0 -4px 0 0 #493529, 0 4px 0 0 #493529, -4px 0 0 0 #493529, 4px 0 0 0 #493529, 0 16px 0 0 rgba(73,53,41,0.35)"
       }}
       initial={{ scale: 0.9, opacity: 0, y: 20 }}
       animate={{ scale: 1, opacity: 1, y: 0 }}
       transition={{ type: "spring", damping: 25, stiffness: 120 }}
     >
       {/* Tape */}
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-[#e5e5e5] opacity-90 shadow-sm border border-slate-900/10 rotate-1 z-10 transition-transform group-hover:scale-105" />
+      <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-6 bg-[#E8C69A] border-2 border-slate-900/40 rotate-1 z-10 transition-transform group-hover:scale-105" />
 
       {/* Folded corner effect (bottom right) */}
-      <div className="absolute bottom-0 right-0 border-[10px] border-transparent border-b-[#e5e5e5] border-r-[#e5e5e5] z-10" />
+      <div className="absolute bottom-0 right-0 border-[10px] border-transparent border-b-[#E8C69A] border-r-[#E8C69A] z-10" />
 
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-4 mb-4">
         {href ? (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="bg-white w-9 h-9 border-[2.5px] border-slate-900 rounded-full flex items-center justify-center shrink-0 hover:scale-110 transition-transform shadow-[2px_2px_0px_#0f172a] hover:shadow-[4px_4px_0px_#0f172a] hover:-translate-y-0.5 cursor-pointer" title={`Open ${title}`}>
+          <a href={href} target="_blank" rel="noopener noreferrer" className="pixel-slot bg-white w-9 h-9 flex items-center justify-center shrink-0 hover:-translate-y-0.5 transition-transform cursor-pointer" title={`Open ${title}`}>
             {icon}
           </a>
         ) : (
-          <div className="bg-white w-9 h-9 border-[2.5px] border-slate-900 rounded-full flex items-center justify-center shrink-0">
+          <div className="pixel-slot bg-white w-9 h-9 flex items-center justify-center shrink-0">
             {icon}
           </div>
         )}
         <div>
-          <h3 className="font-black text-base text-slate-900 uppercase tracking-wide leading-tight">{title}</h3>
+          <h3 className="font-pixel font-bold text-lg text-slate-900 uppercase tracking-wide leading-tight">{title}</h3>
           <p className="text-[10px] font-bold text-slate-600 truncate max-w-[150px]">{helperText}</p>
         </div>
       </div>
@@ -106,25 +106,25 @@ function MessageNote({ platform, icon, title, helperText, rotate, href }: Messag
       {platform === 'linkedin' ? (
         <div className="flex-1 flex flex-col justify-between">
           <div className="flex flex-col items-center mt-2 space-y-3">
-             <div className="w-16 h-16 bg-slate-200 border-[3px] border-slate-900 rounded-full overflow-hidden flex items-center justify-center">
+             <div className="w-16 h-16 bg-slate-200 border-4 border-slate-900 shadow-[4px_4px_0_0_rgba(73,53,41,0.35)] overflow-hidden flex items-center justify-center">
                <img src={linkedinAvatar} alt="Chatriyan" className="w-full h-full object-cover" draggable={false} />
              </div>
              <div className="text-center">
-               <p className="font-bold text-slate-900 text-sm">AI Product Designer</p>
+               <p className="font-pixel font-semibold text-slate-900 text-base">AI Product Designer</p>
                <div className="flex items-center justify-center gap-1 text-slate-500 mt-1">
                  <MapPin className="w-3 h-3" />
                  <span className="text-[10px] font-semibold">Bengaluru, India</span>
                </div>
              </div>
-             <div className="bg-green-100 border border-slate-900 text-green-800 text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-full flex items-center gap-1 mt-1">
-               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+             <div className="pixel-badge bg-green-100 text-green-800 text-[10px] font-semibold px-2 py-0.5 flex items-center gap-1.5 mt-2">
+               <div className="w-1.5 h-1.5 bg-green-600 px-blink" />
                Open to Work
              </div>
           </div>
 
-          <div className="flex flex-col gap-2 mt-auto pt-4">
+          <div className="flex flex-col gap-4 mt-auto pt-4">
             <button
-              className="w-full bg-[#0A66C2] hover:bg-[#004182] text-white font-black text-xs uppercase tracking-widest py-2.5 transition-colors flex items-center justify-center gap-2 border-[2.5px] border-slate-900 shadow-[3px_3px_0px_#0f172a] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#0f172a]"
+              className="pixel-btn pixel-btn--forest w-full text-xs py-2.5"
               onClick={() => {
                 const profile = import.meta.env.VITE_LINKEDIN_PROFILE || 'https://linkedin.com/';
                 window.open(profile, '_blank');
@@ -133,7 +133,7 @@ function MessageNote({ platform, icon, title, helperText, rotate, href }: Messag
               View Profile <Linkedin className="w-3 h-3" />
             </button>
             <button
-              className="w-full bg-white hover:bg-slate-100 text-slate-900 font-black text-xs uppercase tracking-widest py-2.5 transition-colors flex items-center justify-center gap-2 border-[2.5px] border-slate-900 shadow-[3px_3px_0px_#0f172a] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#0f172a]"
+              className="pixel-btn w-full text-xs py-2.5"
               onClick={() => {
                 const profile = import.meta.env.VITE_LINKEDIN_PROFILE || 'https://linkedin.com/';
                 window.open(`${profile}/overlay/contact-info/`, '_blank');
@@ -145,12 +145,12 @@ function MessageNote({ platform, icon, title, helperText, rotate, href }: Messag
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          <div className="flex flex-wrap gap-2.5 mb-4 mt-1">
             {CHIPS.slice(0, 3).map(chip => (
               <button 
                 key={chip}
                 onClick={() => handleChipClick(chip)}
-                className="text-[9px] font-black uppercase tracking-wider bg-white border-[2px] border-slate-900 px-1.5 py-0.5 text-slate-900 hover:bg-slate-900 hover:text-white transition-colors"
+                className="pixel-badge text-[10px] font-semibold bg-[#E8C69A] px-1.5 py-0.5 text-slate-900 hover:bg-[#9AA889] transition-colors"
               >
                 {chip}
               </button>
@@ -159,18 +159,18 @@ function MessageNote({ platform, icon, title, helperText, rotate, href }: Messag
 
           <div className="relative flex-1 flex flex-col">
             <textarea 
-              className="w-full bg-transparent border-b-[2px] border-slate-900/20 focus:border-slate-900 outline-none resize-none flex-1 min-h-[100px] text-xs font-semibold text-slate-700 placeholder:text-slate-400 leading-relaxed"
+              className="w-full bg-transparent border-b-4 border-dashed border-slate-900/25 focus:border-slate-900 outline-none resize-none flex-1 min-h-[100px] text-xs font-semibold text-slate-700 placeholder:text-slate-400 leading-relaxed"
               placeholder="Hi Chatriyan, ..."
               value={message}
               onChange={handleMessageChange}
             />
-            <div className="text-[9px] font-bold text-slate-400 text-right mt-1.5">
+            <div className="font-pixel text-[11px] text-slate-500 text-right mt-1.5">
               {message.length} / 1000
             </div>
           </div>
 
           <button
-            className={`mt-3 w-full font-black text-xs uppercase tracking-widest py-2.5 transition-colors flex items-center justify-center gap-2 group border-[2.5px] border-slate-900 shadow-[3px_3px_0px_#0f172a] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#0f172a] disabled:bg-[#8f9699] disabled:border-[#8f9699] disabled:shadow-none disabled:text-white disabled:pointer-events-none ${platform === 'whatsapp' ? 'bg-[#25D366] hover:bg-[#1da851] text-white' : 'bg-[#EA4335] hover:bg-[#c5221f] text-white'}`}
+            className={`pixel-btn mt-4 w-full text-xs py-2.5 group disabled:pointer-events-none ${platform === 'whatsapp' ? 'pixel-btn--sage' : 'pixel-btn--terracotta'}`}
             onClick={handleSend}
             disabled={!message.trim() || status !== 'idle'}
           >
@@ -199,7 +199,7 @@ function MessageNote({ platform, icon, title, helperText, rotate, href }: Messag
       <AnimatePresence>
         {status === 'sent' && (
           <motion.div 
-            className="absolute -bottom-10 left-0 right-0 bg-[#34d399] border-[2.5px] border-slate-900 shadow-[3px_3px_0px_#0f172a] p-1.5 text-center text-[10px] font-extrabold uppercase text-slate-900 z-50"
+            className="pixel-dialog absolute -bottom-12 left-0 right-0 bg-[#9AA889] p-1.5 text-center font-pixel text-[11px] font-semibold uppercase text-slate-900 z-50"
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 5 }}
@@ -222,9 +222,9 @@ export default function ContactBoard() {
     >
       
       {/* Wooden Frame + Corkboard Background */}
-      <div className="absolute inset-0 bg-[#dcae82] border-[12px] border-[#8b5a2b] shadow-[16px_16px_0px_#0f172a] rounded-md -z-20 overflow-hidden">
+      <div className="absolute inset-0 bg-[#C9935F] border-[16px] border-[#B98250] shadow-[0_0_0_4px_#493529,inset_0_0_0_4px_#493529,0_18px_0_4px_rgba(73,53,41,0.35)] -z-20 overflow-hidden">
         {/* Cork Texture Overlay */}
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '12px 12px' }} />
+        <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'linear-gradient(90deg, #8A5E38 4px, transparent 4px), linear-gradient(#8A5E38 4px, transparent 4px)', backgroundSize: '16px 16px, 24px 20px', backgroundPosition: '0 0, 8px 6px' }} />
         
         {/* Background Decorations (Scrapbook feel) */}
         <div className="absolute top-12 left-12 w-28 h-16 bg-blue-50 -rotate-6 shadow-sm border border-slate-900/10 flex items-center justify-center opacity-70 z-0">
@@ -244,15 +244,13 @@ export default function ContactBoard() {
         </div>
         
         {/* Random Pins */}
-        <div className="absolute top-8 right-8 w-2 h-2 rounded-full bg-red-500 shadow-sm border border-slate-900 z-0" />
-        <div className="absolute bottom-8 left-8 w-2 h-2 rounded-full bg-blue-500 shadow-sm border border-slate-900 z-0" />
+        <div className="absolute top-8 right-8 w-3 h-3 bg-red-500 border-2 border-slate-900 z-0" />
+        <div className="absolute bottom-8 left-8 w-3 h-3 bg-green-600 border-2 border-slate-900 z-0" />
       </div>
       
       {/* Title */}
-      <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-[90%] sm:w-[420px] h-[70px] sm:h-[90px] bg-white border-[3px] sm:border-[4px] border-slate-900 shadow-[6px_6px_0px_#0f172a] -rotate-1 z-30 flex flex-col items-center justify-center transition-transform hover:-rotate-2">
-        {/* Tape */}
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-5 sm:h-6 bg-[#e5e5e5] opacity-90 shadow-sm border border-slate-900/10 rotate-2 z-40" />
-        <h2 className="font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest text-slate-900" style={{ fontFamily: 'var(--font-sans)' }}>Let's Connect</h2>
+      <div className="pixel-wood pixel-sign absolute -top-6 left-1/2 -translate-x-1/2 w-[90%] sm:w-[420px] h-[70px] sm:h-[90px] z-30 flex flex-col items-center justify-center transition-transform hover:-translate-y-1">
+        <h2 className="font-pixel font-bold text-2xl sm:text-3xl md:text-4xl uppercase tracking-widest text-[#FFF1D6]" style={{ textShadow: '3px 3px 0 #493529' }}>Let's Connect</h2>
       </div>
 
       {/* Cards Container */}

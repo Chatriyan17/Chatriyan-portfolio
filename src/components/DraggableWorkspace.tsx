@@ -5,6 +5,7 @@ import ContactBoard from './ContactBoard';
 import { MapPin, Briefcase, UserRoundPen, Coffee, Download, Mail, Linkedin, ExternalLink, X, LayoutTemplate, ArrowRight, Moon, Sun, Dumbbell, Laptop, CheckCircle, PenTool, Terminal, Layers, Eye, EyeOff, Figma, Bot, Sparkles, Scissors, Brain, Rocket, FlaskConical, Pencil, Search, Move } from 'lucide-react';
 import { Passport } from './career-passport';
 import PhilosophyCard from './PhilosophyCard';
+import RoomDecor, { PixelSprite } from './PixelDecor';
 import gamerRoomStickerImg from '../assets/gamer-room-sticker.png';
 
 type CardType = 'contact_board' | 'sticker' | 'photo' | 'info' | 'proof' | 'personality' | 'resume' | 'contact' | 'lifeclock' | 'timeline' | 'skills' | 'resume_contact' | 'story' | 'greeting' | 'tool_skills' | 'portfolio_folder' | 'passport' | 'philosophy' | 'ticket';
@@ -23,9 +24,9 @@ interface CardData {
 }
 
 const ZONE_CENTERS = {
-  home: { x: 0, y: -220, name: 'About / Home', color: '#10b981' }, // emerald-500
-  work: { x: 700, y: -320, name: 'Case Studies', color: '#3b82f6' }, // blue-500
-  contact: { x: -750, y: 480, name: 'Contact', color: '#f59e0b' }, // amber-500
+  home: { x: 0, y: -220, name: 'About / Home', color: '#536B4B' }, // forest
+  work: { x: 700, y: -320, name: 'Case Studies', color: '#C96F4A' }, // terracotta
+  contact: { x: -750, y: 480, name: 'Contact', color: '#B98250' }, // wood
 };
 
 // Layout grid (all coordinates are card centers):
@@ -90,7 +91,7 @@ export default function WorkspaceCanvas() {
   const { timeStr, currentHour } = useISTTime();
 
   const getLightingColor = (hour: number) => {
-    return '#ffffff';
+    return '#DCAA78';
   };
 
   useEffect(() => {
@@ -176,34 +177,34 @@ export default function WorkspaceCanvas() {
       {isDesktop && <VisitorCursor mouseX={mouseX} mouseY={mouseY} />}
       
       {/* Top Navigation */}
-      <div className="absolute top-6 left-6 right-6 z-50 flex justify-between items-start pointer-events-none">
+      <div className="absolute top-4 left-4 right-4 md:top-6 md:left-6 md:right-6 z-50 flex flex-wrap gap-x-3 gap-y-5 justify-between items-start pointer-events-none">
         
         {/* Left: Logo */}
-        <div className="pointer-events-auto flex items-center justify-start min-w-[200px]">
-          <div className="bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-xl px-5 py-3 flex items-center justify-center cursor-pointer hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] hover:bg-[#34d399] transition-all" onClick={() => panTo(0, -220)}>
-            <svg viewBox="0 0 100 100" className="w-8 h-8 text-slate-900" aria-hidden="true">
+        <div className="pointer-events-auto flex items-center justify-start md:min-w-[200px]">
+          <div className="pixel-btn pixel-btn--sage px-2.5 py-2 md:px-4 md:py-3" onClick={() => panTo(0, -220)}>
+            <svg viewBox="0 0 100 100" className="w-6 h-6 md:w-8 md:h-8 text-slate-900" aria-hidden="true">
               <path d="M 79.49 29.35 A 36 36 0 1 0 79.49 70.65" fill="none" stroke="currentColor" strokeWidth="11"/>
-              <circle cx="86" cy="50" r="6" className="fill-[#35577A]"/>
+              <circle cx="86" cy="50" r="6" className="fill-[#C96F4A]"/>
             </svg>
           </div>
         </div>
 
         {/* Center: Navigation Links */}
-        <div className="pointer-events-auto flex items-center gap-3">
-          <button className="bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-xl px-5 py-3 font-bold uppercase tracking-wider text-sm text-slate-900 cursor-pointer hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] hover:bg-[#fbbf24] transition-all focus:outline-none focus:ring-4 focus:ring-amber-400" onClick={() => panTo(0, 0)}>
+        <div className="pointer-events-auto flex items-center gap-2.5 md:gap-3">
+          <button className="pixel-btn px-2.5 py-2 text-[11px] md:px-5 md:py-3 md:text-sm" onClick={() => panTo(0, 0)}>
             About Me
           </button>
-          <button className="bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-xl px-5 py-3 font-bold uppercase tracking-wider text-sm text-slate-900 cursor-pointer hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] hover:bg-[#fbbf24] transition-all focus:outline-none focus:ring-4 focus:ring-amber-400" onClick={() => panTo(700, -320)}>
+          <button className="pixel-btn px-2.5 py-2 text-[11px] md:px-5 md:py-3 md:text-sm" onClick={() => panTo(700, -320)}>
             Case Studies
           </button>
-          <button className="bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-xl px-5 py-3 font-bold uppercase tracking-wider text-sm text-slate-900 cursor-pointer hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] hover:bg-[#fbbf24] transition-all focus:outline-none focus:ring-4 focus:ring-amber-400" onClick={() => panTo(-750, 480)}>
+          <button className="pixel-btn px-2.5 py-2 text-[11px] md:px-5 md:py-3 md:text-sm" onClick={() => panTo(-750, 480)}>
             Contact
           </button>
         </div>
 
         {/* Right: Resume */}
-        <div className="pointer-events-auto flex justify-end min-w-[200px]">
-          <button className="bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-xl px-5 py-3 font-bold uppercase tracking-wider text-sm text-slate-900 cursor-pointer hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] hover:bg-[#a78bfa] transition-all flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-purple-400" onClick={() => window.open('https://drive.google.com/file/d/1Mo8Jn7Loq0jjwwpUcycHDjFHikZ9h_o5/view?usp=sharing', '_blank', 'noopener,noreferrer')}>
+        <div className="pointer-events-auto flex justify-end md:min-w-[200px]">
+          <button className="pixel-btn pixel-btn--terracotta px-2.5 py-2 text-[11px] md:px-5 md:py-3 md:text-sm" onClick={() => window.open('https://drive.google.com/file/d/1Mo8Jn7Loq0jjwwpUcycHDjFHikZ9h_o5/view?usp=sharing', '_blank', 'noopener,noreferrer')}>
             <Download className="w-4 h-4" />
             Resume
           </button>
@@ -220,11 +221,8 @@ export default function WorkspaceCanvas() {
           style={{
             x,
             y,
-            backgroundImage: `
-              radial-gradient(circle at center, transparent 40%, #ffffff 90%),
-              repeating-linear-gradient(to right, rgba(15,23,42,0.05) 0, rgba(15,23,42,0.05) 1px, transparent 1px, transparent 50px),
-              repeating-linear-gradient(to bottom, rgba(15,23,42,0.05) 0, rgba(15,23,42,0.05) 1px, transparent 1px, transparent 50px)
-            `,
+            backgroundImage: 'var(--px-floor-tile)',
+            backgroundSize: '128px 64px',
             left: '50%',
             top: '50%',
             marginLeft: '-2000px',
@@ -235,16 +233,17 @@ export default function WorkspaceCanvas() {
           aria-label="Interactive infinite canvas workspace"
         >
           <div className="absolute top-1/2 left-1/2">
-            {/* Landmark glow blips */}
+            {/* Cozy room: wall, windows, furniture, rugs */}
+            <RoomDecor />
 
             
             <svg className="absolute top-0 left-0 overflow-visible pointer-events-none opacity-40 z-0" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path 
                 d="M 250 250 Q 350 350, 450 400 T 750 150" 
                 fill="none" 
-                stroke="#2dd4bf" 
-                strokeWidth="2" 
-                strokeDasharray="6 6" 
+                stroke="#8A5E38" 
+                strokeWidth="4" 
+                strokeDasharray="8 8" 
               />
             </svg>
 
@@ -270,7 +269,7 @@ export default function WorkspaceCanvas() {
       {/* Reset View Button */}
       <button 
         onClick={handleReset}
-        className="absolute right-8 bottom-8 px-5 py-2.5 text-sm font-bold text-slate-900 bg-white hover:-translate-y-1 rounded-xl shadow-[4px_4px_0px_#0f172a] hover:shadow-[6px_6px_0px_#0f172a] border-2 border-slate-900 transition-all cursor-pointer z-50"
+        className="pixel-btn pixel-btn--oak absolute right-8 bottom-8 px-5 py-2.5 text-sm z-50"
       >
         Reset View
       </button>
@@ -278,7 +277,7 @@ export default function WorkspaceCanvas() {
       {/* Drag Indicator */}
       {isDesktop && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none z-40 opacity-80">
-          <div className="bg-white px-5 py-2.5 rounded-full border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] flex items-center gap-3 font-bold text-sm text-slate-800 tracking-tight animate-bounce">
+          <div className="pixel-dialog px-5 py-2.5 flex items-center gap-3 font-pixel font-semibold text-sm text-slate-800 tracking-wide animate-bounce">
             <Move className="w-5 h-5 text-slate-800" />
             <span>Hold & Drag to explore</span>
           </div>
@@ -292,9 +291,9 @@ export default function WorkspaceCanvas() {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="fixed bottom-24 right-8 bg-white text-slate-900 px-5 py-3 rounded-2xl shadow-[6px_6px_0px_#0f172a] z-50 text-sm font-bold flex items-center gap-3 pointer-events-none border-[3px] border-slate-900"
+            className="pixel-dialog fixed bottom-24 right-8 px-5 py-3 z-50 text-sm font-pixel font-semibold flex items-center gap-3 pointer-events-none"
           >
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: ZONE_CENTERS[activeZone].color }} />
+            <div className="w-3 h-3 shadow-[0_0_0_2px_#493529]" style={{ backgroundColor: ZONE_CENTERS[activeZone].color }} />
             New Area Discovered: {ZONE_CENTERS[activeZone].name}
           </motion.div>
         )}
@@ -330,7 +329,8 @@ function WorldMinimap({ x, y, isDesktop, activeZone, mouseX }: { x: any, y: any,
       aria-label="Radar Minimap Navigation"
     >
       <div 
-        className={`w-[160px] h-[160px] bg-white rounded-full border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] overflow-hidden relative ${isDesktop ? 'cursor-crosshair' : ''} focus-visible:ring-2 focus-visible:ring-[#2dd4bf] focus:outline-none`}
+        className={`w-[160px] h-[160px] pixel-checker-cream overflow-hidden relative ${isDesktop ? 'cursor-crosshair' : ''} focus-visible:outline-dashed focus-visible:outline-[3px] focus-visible:outline-offset-[18px] focus-visible:outline-[#C96F4A] focus:outline-none`}
+        style={{ boxShadow: '0 0 0 4px #493529, 0 0 0 12px #B98250, 0 0 0 16px #493529, 0 22px 0 0 rgba(73,53,41,0.35)' }}
         onClick={handleMinimapClick}
         role="button"
         tabIndex={0}
@@ -348,18 +348,16 @@ function WorldMinimap({ x, y, isDesktop, activeZone, mouseX }: { x: any, y: any,
         
         {/* Concentric Circles & Crosshairs SVG */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
-           <circle cx="50" cy="50" r="49" fill="none" stroke="#cbd5e1" strokeWidth="0.5" />
-           <circle cx="50" cy="50" r="33" fill="none" stroke="#cbd5e1" strokeWidth="0.5" />
-           <circle cx="50" cy="50" r="16.5" fill="none" stroke="#cbd5e1" strokeWidth="0.5" />
-           <line x1="50" y1="0" x2="50" y2="100" stroke="#cbd5e1" strokeWidth="0.5" />
-           <line x1="0" y1="50" x2="100" y2="50" stroke="#cbd5e1" strokeWidth="0.5" />
+           <rect x="25" y="25" width="50" height="50" fill="none" stroke="#B98250" strokeWidth="1" strokeDasharray="2 2" shapeRendering="crispEdges" />
+           <line x1="50" y1="0" x2="50" y2="100" stroke="#B98250" strokeWidth="1" strokeDasharray="2 2" shapeRendering="crispEdges" />
+           <line x1="0" y1="50" x2="100" y2="50" stroke="#B98250" strokeWidth="1" strokeDasharray="2 2" shapeRendering="crispEdges" />
         </svg>
 
         {/* Sweeping Radar Beam */}
         <div 
           className="absolute inset-0 rounded-full animate-[spin_4s_linear_infinite]"
           style={{
-            background: 'conic-gradient(from 0deg, transparent 70%, rgba(15,23,42,0.05) 90%, rgba(15,23,42,0.1) 100%)'
+            background: 'conic-gradient(from 0deg, transparent 75%, rgba(83,107,75,0.12) 92%, rgba(83,107,75,0.22) 100%)'
           }}
         />
         
@@ -367,7 +365,7 @@ function WorldMinimap({ x, y, isDesktop, activeZone, mouseX }: { x: any, y: any,
         {Object.entries(ZONE_CENTERS).map(([key, zone]) => (
            <div 
              key={key} 
-             className="absolute w-2 h-2 rounded-full -ml-1 -mt-1 transition-all duration-300 shadow-[0_0_8px_currentColor]"
+             className="absolute w-3 h-3 -ml-1.5 -mt-1.5 transition-all duration-300 shadow-[0_0_0_2px_#493529]"
              style={{ 
                left: ((zone.x + 1000) / 2000) * 160, 
                top: ((zone.y + 700) / 1400) * 160,
@@ -378,26 +376,26 @@ function WorldMinimap({ x, y, isDesktop, activeZone, mouseX }: { x: any, y: any,
            >
              {/* Pulse effect for active zone */}
              {activeZone === key && (
-               <span className="absolute inline-flex h-full w-full rounded-full bg-current opacity-75 animate-ping" />
+               <span className="absolute inline-flex h-full w-full bg-current opacity-75 animate-ping" />
              )}
            </div>
         ))}
 
         {/* Viewport Indicator (You) */}
         <motion.div 
-          className="absolute w-4 h-4 drop-shadow-[0_0_8px_rgba(255,255,255,1)] z-10 -ml-1 -mt-1"
+          className="absolute w-4 h-4 drop-shadow-[2px_2px_0_rgba(73,53,41,0.4)] z-10 -ml-1 -mt-1"
           style={{ x: indicatorX, y: indicatorY, rotate: mouseRotation }}
         >
           <svg viewBox="0 0 100 100" className="w-full h-full">
-            <polygon points="50,15 90,85 50,70 10,85" fill="white" stroke="#1a1a1a" strokeWidth="8" strokeLinejoin="round" />
+            <polygon points="50,15 90,85 50,70 10,85" fill="#C96F4A" stroke="#493529" strokeWidth="10" strokeLinejoin="miter" />
           </svg>
         </motion.div>
       </div>
 
-      <div className="w-[160px] h-1.5 flex gap-1 rounded-full overflow-hidden">
-        <div className={`h-full w-1/3 transition-colors duration-300 ${activeZone === 'home' ? 'bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'bg-stone-800'}`} />
-        <div className={`h-full w-1/3 transition-colors duration-300 ${activeZone === 'work' ? 'bg-[#3b82f6] shadow-[0_0_8px_rgba(59,130,246,0.8)]' : 'bg-stone-800'}`} />
-        <div className={`h-full w-1/3 transition-colors duration-300 ${activeZone === 'contact' ? 'bg-[#f59e0b] shadow-[0_0_8px_rgba(245,158,11,0.8)]' : 'bg-stone-800'}`} />
+      <div className="w-[160px] h-3 mt-5 flex gap-1 p-0.5 bg-[#493529] pixel-outline">
+        <div className={`h-full w-1/3 transition-colors duration-300 ${activeZone === 'home' ? 'bg-[#536B4B]' : 'bg-[#E8C69A]'}`} />
+        <div className={`h-full w-1/3 transition-colors duration-300 ${activeZone === 'work' ? 'bg-[#C96F4A]' : 'bg-[#E8C69A]'}`} />
+        <div className={`h-full w-1/3 transition-colors duration-300 ${activeZone === 'contact' ? 'bg-[#B98250]' : 'bg-[#E8C69A]'}`} />
       </div>
     </div>
   );
@@ -521,9 +519,7 @@ function ChatriyanCursor({ canvasX, canvasY, mouseX, mouseY }: { canvasX: any; c
     >
       <div className="relative">
         {/* Sleek, standard cursor SVG */}
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fbbf24" stroke="#0f172a" strokeWidth="2"  className="drop-shadow-md">
-          <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87c.45 0 .67-.54.35-.85L6.35 2.85a.5.5 0 0 0-.85.35Z" />
-        </svg>
+        <PixelSprite grid={pixelCursor('y')} scale={2} className="drop-shadow-[2px_2px_0_rgba(73,53,41,0.35)]" />
 
         <AnimatePresence mode="wait">
           {showGreeting ? (
@@ -533,12 +529,12 @@ function ChatriyanCursor({ canvasX, canvasY, mouseX, mouseY }: { canvasX: any; c
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.85 }}
               transition={{ type: "spring", damping: 18, stiffness: 260 }}
-              className="absolute left-3.5 top-3.5 bg-amber-500 rounded-lg p-2.5 shadow-[0_6px_20px_rgba(245,158,11,0.35)] border border-amber-300/40 whitespace-nowrap min-w-[180px]"
+              className="pixel-dialog absolute left-5 top-7 p-2.5 whitespace-nowrap min-w-[180px]"
             >
-              <div className="text-[9px] font-bold text-amber-100 uppercase tracking-wider mb-1">
+              <div className="font-pixel text-[10px] font-semibold text-[#C96F4A] uppercase tracking-wider mb-1">
                 Chatriyan · UX Designer
               </div>
-              <div className="text-[13px] font-medium text-white flex items-center gap-1.5">
+              <div className="text-[13px] font-medium text-slate-900 flex items-center gap-1.5">
                 Hello, how are you?
                 <motion.span
                   className="origin-bottom-right inline-block"
@@ -561,7 +557,7 @@ function ChatriyanCursor({ canvasX, canvasY, mouseX, mouseY }: { canvasX: any; c
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.85 }}
               transition={{ type: "spring", damping: 18, stiffness: 260 }}
-              className="absolute left-3.5 top-3.5 px-2 py-0.5 text-[10px] font-semibold text-white rounded-md shadow-sm whitespace-nowrap bg-amber-500 tracking-wide border border-amber-300/40"
+              className="pixel-badge absolute left-5 top-7 px-2 py-0.5 text-[10px] font-semibold text-[#FFF1D6] whitespace-nowrap bg-[#C96F4A]"
             >
               Chatriyan
             </motion.div>
@@ -570,6 +566,28 @@ function ChatriyanCursor({ canvasX, canvasY, mouseX, mouseY }: { canvasX: any; c
       </div>
     </motion.div>
   );
+}
+
+// Chunky 10x16 pixel arrow; `fill` is a PixelDecor palette key.
+function pixelCursor(fill: string) {
+  return [
+    'o.........',
+    'oo........',
+    'oyo.......',
+    'oyyo......',
+    'oyyyo.....',
+    'oyyyyo....',
+    'oyyyyyo...',
+    'oyyyyyyo..',
+    'oyyyyyyyo.',
+    'oyyyyyoooo',
+    'oyyoyyo...',
+    'oyo.oyyo..',
+    'oo..oyyo..',
+    'o....oyyo.',
+    '.....oyyo.',
+    '......oo..',
+  ].map((row) => row.replace(/y/g, fill));
 }
 
 function VisitorCursor({ mouseX, mouseY }: { mouseX: any, mouseY: any }) {
@@ -583,10 +601,8 @@ function VisitorCursor({ mouseX, mouseY }: { mouseX: any, mouseY: any }) {
     >
       {/* Offset slightly from the real cursor to not obscure it */}
       <div className="ml-4 mt-4">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#3B82F6"  className="drop-shadow-md -ml-2 -mt-2">
-          <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87c.45 0 .67-.54.35-.85L6.35 2.85a.5.5 0 0 0-.85.35Z" />
-        </svg>
-        <div className="px-2 py-1 text-[10px] font-semibold text-white rounded-full shadow-md whitespace-nowrap bg-blue-500 tracking-wide -mt-2 ml-2">
+        <PixelSprite grid={pixelCursor('s')} scale={2} className="drop-shadow-[2px_2px_0_rgba(73,53,41,0.35)] -ml-2 -mt-2" />
+        <div className="pixel-badge px-2 py-0.5 text-[10px] font-semibold text-[#FFF1D6] whitespace-nowrap bg-[#536B4B] mt-1 ml-3">
           You
         </div>
       </div>
@@ -658,7 +674,7 @@ const StaticCard: React.FC<{
           animate(canvasX, -x.get(), { type: 'spring', damping: 25, stiffness: 120 });
           animate(canvasY, -y.get(), { type: 'spring', damping: 25, stiffness: 120 });
         }}
-        className={`will-change-transform pointer-events-none ${!isFixed ? 'cursor-grab' : ''} focus-visible:ring-4 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus:outline-none rounded-xl`}
+        className={`will-change-transform pointer-events-none ${!isFixed ? 'cursor-grab' : ''} focus-visible:outline-dashed focus-visible:outline-4 focus-visible:outline-offset-8 focus-visible:outline-[#C96F4A] focus:outline-none`}
       >
         <CardContent card={card} isDesktop={isDesktop} timeStr={timeStr} currentHour={currentHour} />
       </motion.div>
@@ -668,8 +684,8 @@ const StaticCard: React.FC<{
 
 function TimelineCard() {
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-[6px_6px_0px_#0f172a] border-[3px] border-slate-900 w-72 select-none hover:-translate-y-1 hover:shadow-[8px_8px_0px_#0f172a] transition-all">
-      <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+    <div className="pixel-panel p-5 w-72 select-none hover:-translate-y-1 transition-transform">
+      <h3 className="font-pixel text-sm font-semibold uppercase tracking-wide text-slate-900 mb-4 flex items-center gap-2">
         <CheckCircle className="w-5 h-5 text-slate-900" /> Experience Journey
       </h3>
       <div className="relative pt-2 pb-2">
@@ -685,7 +701,7 @@ function TimelineCard() {
             <span className="text-[10px] text-slate-500 font-bold whitespace-nowrap">Product Design</span>
           </div>
           <div className="flex flex-col items-center">
-            <div className="w-3.5 h-3.5 rounded-full bg-[#f59e0b] border-2 border-slate-900 mb-2 z-10 animate-pulse" />
+            <div className="w-3.5 h-3.5 rounded-full bg-[#CF9454] border-2 border-slate-900 mb-2 z-10 animate-pulse" />
             <span className="text-[10px] text-slate-900 font-bold whitespace-nowrap">AI x UX</span>
           </div>
         </div>
@@ -732,7 +748,7 @@ function SkillsCard() {
   const Sparkle = ({ className, style }: { className?: string, style?: React.CSSProperties }) => (
     <svg 
       viewBox="0 0 24 24" 
-      className={`absolute fill-amber-400 stroke-[#0f172a] stroke-[1.5px] drop-shadow-[1px_1px_0px_#020617] ${className}`}
+      className={`absolute fill-amber-400 stroke-[#493529] stroke-[1.5px] drop-shadow-[1px_1px_0px_#2e2119] ${className}`}
       style={{ width: '12px', height: '12px', ...style }}
     >
       <path d="M12 0 L15.5 8.5 L24 12 L15.5 15.5 L12 24 L8.5 15.5 L0 12 L8.5 8.5 Z" />
@@ -751,7 +767,7 @@ function SkillsCard() {
       >
         {/* Sparkles */}
         <Sparkle className="top-1 left-3 animate-pulse" />
-        <Sparkle className="bottom-2 right-4 animate-pulse delay-75 fill-[#fab82c]" />
+        <Sparkle className="bottom-2 right-4 animate-pulse delay-75 fill-[#E0B070]" />
         <Sparkle className="bottom-6 left-1 scale-75 opacity-95" />
 
         {/* Letters Body Wrapper */}
@@ -772,7 +788,7 @@ function SkillsCard() {
                 {/* Yellow counter shape behind letter loop */}
                 {item.hasLoop && item.loopOffset && (
                   <div 
-                    className="absolute rounded-full bg-[#fab82c] border border-[#0f172a] shadow-[inset_0_1px_1.5px_rgba(0,0,0,0.2)] z-0"
+                    className="absolute rounded-full bg-[#E0B070] border border-[#493529] shadow-[inset_0_1px_1.5px_rgba(0,0,0,0.2)] z-0"
                     style={{
                       left: item.loopOffset.x,
                       top: item.loopOffset.y,
@@ -788,9 +804,9 @@ function SkillsCard() {
                   style={{
                     display: 'block',
                     textShadow: `
-                      -1.2px -1.2px 0 #0f172a, 1.2px -1.2px 0 #0f172a, -1.2px 1.2px 0 #0f172a, 1.2px 1.2px 0 #0f172a,
-                      -1.2px 0px 0 #0f172a, 1.2px 0px 0 #0f172a, 0px -1.2px 0 #0f172a, 0px 1.2px 0 #0f172a,
-                      0.5px 1.5px 0 #020617, 1px 2px 0 #020617, 1.5px 2.5px 0 #020617
+                      -1.2px -1.2px 0 #493529, 1.2px -1.2px 0 #493529, -1.2px 1.2px 0 #493529, 1.2px 1.2px 0 #493529,
+                      -1.2px 0px 0 #493529, 1.2px 0px 0 #493529, 0px -1.2px 0 #493529, 0px 1.2px 0 #493529,
+                      0.5px 1.5px 0 #2e2119, 1px 2px 0 #2e2119, 1.5px 2.5px 0 #2e2119
                     `
                   }}
                 >
@@ -815,7 +831,7 @@ function SkillsCard() {
                 {/* Yellow counter shape behind letter loop */}
                 {item.hasLoop && item.loopOffset && (
                   <div 
-                    className="absolute rounded-full bg-[#fab82c] border border-[#0f172a] shadow-[inset_0_1px_1.5px_rgba(0,0,0,0.2)] z-0"
+                    className="absolute rounded-full bg-[#E0B070] border border-[#493529] shadow-[inset_0_1px_1.5px_rgba(0,0,0,0.2)] z-0"
                     style={{
                       left: item.loopOffset.x,
                       top: item.loopOffset.y,
@@ -831,9 +847,9 @@ function SkillsCard() {
                   style={{
                     display: 'block',
                     textShadow: `
-                      -1.2px -1.2px 0 #0f172a, 1.2px -1.2px 0 #0f172a, -1.2px 1.2px 0 #0f172a, 1.2px 1.2px 0 #0f172a,
-                      -1.2px 0px 0 #0f172a, 1.2px 0px 0 #0f172a, 0px -1.2px 0 #0f172a, 0px 1.2px 0 #0f172a,
-                      0.5px 1.5px 0 #020617, 1px 2px 0 #020617, 1.5px 2.5px 0 #020617
+                      -1.2px -1.2px 0 #493529, 1.2px -1.2px 0 #493529, -1.2px 1.2px 0 #493529, 1.2px 1.2px 0 #493529,
+                      -1.2px 0px 0 #493529, 1.2px 0px 0 #493529, 0px -1.2px 0 #493529, 0px 1.2px 0 #493529,
+                      0.5px 1.5px 0 #2e2119, 1px 2px 0 #2e2119, 1.5px 2.5px 0 #2e2119
                     `
                   }}
                 >
@@ -868,31 +884,31 @@ function StoryCard() {
         onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}
         whileHover={{ y: -6, rotate: -2 }}
         whileTap={{ scale: 0.95 }}
-        className="w-[220px] h-[300px] bg-[#fdfbf7] rounded-none shadow-[8px_8px_0px_#0f172a] border-[3px] border-slate-900 flex cursor-pointer relative group transition-colors select-none pointer-events-auto"
+        className="w-[220px] h-[300px] pixel-panel pixel-ruled flex cursor-pointer relative group transition-colors select-none pointer-events-auto"
       >
         {/* Paper edges */}
         <div className="absolute right-[-6px] top-[2px] bottom-[2px] w-[6px] bg-white border-y-[3px] border-r-[3px] border-slate-900 rounded-none z-[-1]" />
         
         {/* Binder / spine */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#34d399] border-r-[3px] border-slate-900 rounded-none flex flex-col justify-evenly py-2 items-center">
+        <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#536B4B] border-r-4 border-slate-900 rounded-none flex flex-col justify-evenly py-2 items-center">
             {/* Notebook spirals on cover */}
             {[...Array(12)].map((_, i) => (
-              <div key={i} className="w-5 h-2 bg-slate-900 border-[2px] border-slate-900 rounded-none" />
+              <div key={i} className="w-5 h-2 bg-[#E8C69A] border-2 border-slate-900 rounded-none" />
             ))}
         </div>
         
         {/* Cover content */}
         <div className="flex-1 flex flex-col justify-center items-center pl-8 text-slate-900 text-center relative z-10">
-           <h3 className="font-mono font-black uppercase text-3xl tracking-tighter mb-3 text-slate-900">About Me</h3>
+           <h3 className="font-pixel font-bold uppercase text-3xl tracking-wide mb-3 text-slate-900">About Me</h3>
            <div className="h-[3px] w-12 bg-slate-900 mb-3" />
-           <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest bg-[#fbbf24] px-1 border-2 border-slate-900">Written by</p>
-           <p className="text-sm font-black text-slate-900 mt-1">Chatriyan</p>
+           <p className="font-pixel text-[11px] font-semibold text-slate-900 uppercase tracking-widest bg-[#E8C69A] px-1.5 border-2 border-slate-900">Written by</p>
+           <p className="font-pixel text-base font-bold text-slate-900 mt-1">Chatriyan</p>
         </div>
         
         {/* Bookmark ribbon */}
-        <div className="absolute bottom-[-20px] right-[30px] w-4 h-12 bg-[#0A66C2] border-x-[3px] border-b-[3px] border-slate-900 rounded-none group-hover:translate-y-2 origin-top transition-transform shadow-md z-[-2]" />
+        <div className="absolute bottom-[-20px] right-[30px] w-4 h-12 bg-[#C96F4A] border-x-[3px] border-b-[3px] border-slate-900 rounded-none group-hover:translate-y-2 origin-top transition-transform shadow-md z-[-2]" />
         {/* Sticky note */}
-        <div className="absolute top-[40px] right-[-14px] w-8 h-10 bg-[#EA4335] border-[3px] border-slate-900 rounded-none rotate-3 group-hover:rotate-6 transition-transform shadow-[2px_2px_0px_rgba(0,0,0,0.2)] z-[-2]" />
+        <div className="absolute top-[40px] right-[-14px] w-8 h-10 bg-[#9AA889] border-[3px] border-slate-900 rounded-none rotate-3 group-hover:rotate-6 transition-transform shadow-[2px_2px_0px_rgba(0,0,0,0.2)] z-[-2]" />
       </motion.div>
 
       {isMounted && typeof document !== 'undefined' && createPortal(
@@ -904,7 +920,7 @@ function StoryCard() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+                className="absolute inset-0 bg-slate-900/55"
                 onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
               />
 
@@ -913,15 +929,15 @@ function StoryCard() {
                 animate={{ scale: 1, y: 0, rotateX: 0, opacity: 1 }}
                 exit={{ scale: 0.9, y: 50, opacity: 0 }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="relative z-10 w-full h-full sm:w-[95vw] max-w-[780px] sm:h-[90vh] sm:max-h-[700px] bg-white sm:rounded-none shadow-[16px_16px_0px_#0f172a] border-0 sm:border-[3px] border-slate-900 flex overflow-hidden origin-bottom"
+                className="relative z-10 w-full h-full sm:w-[95vw] max-w-[780px] sm:h-[90vh] sm:max-h-[700px] bg-white sm:rounded-none sm:shadow-[0_0_0_4px_#493529,0_0_0_14px_#B98250,0_0_0_18px_#493529,0_28px_0_0_rgba(73,53,41,0.4)] flex overflow-hidden origin-bottom"
                 style={{
-                  backgroundImage: 'linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px)',
+                  backgroundImage: 'linear-gradient(rgba(185,130,80,0.22) 2px, transparent 2px), linear-gradient(90deg, rgba(185,130,80,0.22) 2px, transparent 2px)',
                   backgroundSize: '20px 20px',
                   backgroundPosition: '-1px -1px',
                 }}
               >
                 {/* Spiral binding holes */}
-                <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-10 flex flex-col justify-evenly py-4 items-center bg-[#34d399] border-r-[3px] border-slate-900 shadow-[inset_-2px_0_0_#0f172a] z-10" aria-hidden="true">
+                <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-10 flex flex-col justify-evenly py-4 items-center bg-[#536B4B] border-r-4 border-slate-900 shadow-[inset_-4px_0_0_#44583E] z-10" aria-hidden="true">
                   {[...Array(15)].map((_, i) => (
                     <div key={i} className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-slate-900 shadow-[inset_1px_1px_3px_rgba(255,255,255,0.2)] relative">
                       <div className="absolute top-1/2 left-1/2 -mt-[1.5px] sm:-mt-[2px] -ml-[8px] sm:-ml-[12px] w-6 sm:w-8 h-[3px] sm:h-[4px] bg-slate-900 border border-white -rotate-12 rounded-full shadow-sm" />
@@ -929,7 +945,7 @@ function StoryCard() {
                   ))}
                 </div>
                 
-                {/* Close button */}                <button                  onClick={() => setIsOpen(false)}                  className="absolute top-6 right-6 sm:top-8 sm:right-8 w-10 h-10 bg-[#EA4335] border-[3px] border-slate-900 rounded-none flex items-center justify-center shadow-[2px_2px_0px_#0f172a] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#0f172a] transition-all z-[100] cursor-pointer"                >                  <X className="w-5 h-5 text-slate-900" />                </button>
+                {/* Close button */}                <button                  onClick={() => setIsOpen(false)}                  className="pixel-btn pixel-btn--terracotta absolute top-6 right-6 sm:top-8 sm:right-8 w-10 h-10 z-[100]"                >                  <X className="w-5 h-5 text-[#FFF1D6]" strokeWidth={3} />                </button>
                 <div className="flex-1 w-full max-w-[740px] pl-10 pr-4 py-8 sm:pl-12 sm:p-12 overflow-y-auto relative custom-scrollbar">
                   {/* Rest of the original StoryCard content, wrapped in motion elements for entrance animation */}
                   <div className="flex justify-between items-start mb-8 pr-12">
@@ -939,10 +955,10 @@ function StoryCard() {
                         transition={{ delay: 0.3 }}
                         className="relative"
                      >
-                       <h3 className="text-4xl md:text-5xl font-mono font-black text-slate-900 uppercase tracking-tighter -rotate-2 leading-tight" style={{ textShadow: '4px 4px 0px #fbbf24, 8px 8px 0px #0f172a' }}>
+                       <h3 className="text-4xl md:text-5xl font-pixel font-bold text-slate-900 uppercase tracking-wide leading-tight" style={{ textShadow: '4px 4px 0px #E8C69A, 8px 8px 0px #493529' }}>
                         The Story
                        </h3>
-                       <svg className="absolute -top-4 -right-8 w-8 h-8 text-[#EA4335] fill-[#EA4335]" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                       <svg className="absolute -top-4 -right-8 w-8 h-8 text-[#C96F4A] fill-[#C96F4A]" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                        </svg>
                      </motion.div>
@@ -952,7 +968,7 @@ function StoryCard() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.35 }}
                         onClick={(e) => { e.stopPropagation(); setIsShortRead(!isShortRead); }}
-                        className="flex items-center gap-2 text-xs font-bold text-slate-900 bg-white px-3 py-2 uppercase font-black tracking-widest rounded-none shadow-[4px_4px_0px_#0f172a] border-[3px] border-slate-900 hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] transition-all z-20 cursor-pointer focus-visible:ring-2 focus-visible:ring-[#1e3a8a] focus:outline-none"
+                        className="pixel-btn pixel-btn--oak text-xs px-3 py-2 z-20"
                         aria-pressed={isShortRead}
                         aria-label="Toggle story length between short read and long read"
                       >
@@ -973,7 +989,7 @@ function StoryCard() {
                     <svg className="absolute -left-6 top-2 w-6 h-6 text-slate-800 rotate-[120deg]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                        <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                    <p className="text-slate-800 font-mono text-[16px] md:text-[18px] leading-relaxed transition-all duration-500 pl-4 mb-6 font-bold border-l-[4px] border-slate-900 bg-[#fbbf24] py-2">
+                    <p className="text-slate-900 font-serif text-[17px] md:text-[19px] leading-relaxed transition-all duration-500 pl-4 pr-3 mb-6 font-semibold border-l-[6px] border-slate-900 bg-[#E8C69A] py-2.5">
                        Growing up, everyone thought I was good at math — good grades, quick with numbers. But looking back, that was never really the thing.
                     </p>
                   </motion.div>
@@ -982,15 +998,15 @@ function StoryCard() {
                      initial={{ opacity: 0, y: 10 }}
                      animate={{ opacity: 1, y: 0 }}
                      transition={{ delay: 0.45 }}
-                     className="text-slate-900 font-mono text-[14px] md:text-[16px] leading-relaxed transition-all duration-500 mb-8 px-4 font-bold border-[3px] border-slate-900 bg-white p-4 shadow-[4px_4px_0px_#0f172a]"
+                     className="pixel-dialog text-slate-900 font-serif text-[15px] md:text-[17px] leading-relaxed transition-all duration-500 mb-8 px-5 py-4 font-medium"
                   >
-                    <strong className="text-slate-900 font-black">What I was actually good at was understanding how a problem gets solved. </strong>
+                    <strong className="text-slate-900 font-bold">What I was actually good at was understanding how a problem gets solved. </strong>
                     <span className={isShortRead ? "line-through text-slate-400 transition-all duration-500" : "transition-all duration-500"}>I'd watch how my teacher worked through something, understand the logic behind it, then find my own way to reach the same answer. I didn't have a word for that back then. Now I do — </span>
-                    <strong className="text-slate-900 font-black bg-[#34d399] px-2 py-1 rounded-none border-[2px] border-slate-900 shadow-[2px_2px_0px_#0f172a] whitespace-pre-wrap leading-loose">design thinking: understanding a problem deeply enough that a better way just shows up on its own. </strong>
+                    <strong className="text-slate-900 font-bold bg-[#9AA889] px-2 py-1 rounded-none border-[2px] border-slate-900 shadow-[2px_2px_0px_#493529] whitespace-pre-wrap leading-loose">design thinking: understanding a problem deeply enough that a better way just shows up on its own. </strong>
                     <span className={isShortRead ? "line-through text-slate-400 transition-all duration-500" : "transition-all duration-500"}>That same instinct is what makes me a designer today. </span>
-                    <strong className="text-slate-900 font-black">In every project, I try to understand "why" before "how," and I try to see the person behind the problem</strong>
+                    <strong className="text-slate-900 font-bold">In every project, I try to understand "why" before "how," and I try to see the person behind the problem</strong>
                     <span className={isShortRead ? "line-through text-slate-400 transition-all duration-500" : "transition-all duration-500"}> — not just the problem on paper. That's what I'm genuinely grateful for — this work gave a name to something I've been doing since I was a kid, </span>
-                    <strong className="text-slate-900 font-black">solving things my own way.</strong>
+                    <strong className="text-slate-900 font-bold">solving things my own way.</strong>
                   </motion.p>
 
 
@@ -1047,7 +1063,7 @@ function PortfolioFolder() {
       
       {/* Folder Back */}
       <div 
-        className="absolute bottom-0 w-[360px] h-[240px] bg-[#fbbf24] border-[3px] border-slate-900" 
+        className="absolute bottom-0 w-[360px] h-[240px] bg-[#8A5E38] border-4 border-slate-900" 
         style={{ 
           zIndex: 5, 
           clipPath: 'polygon(0 15%, 35% 15%, 40% 0, 100% 0, 100% 100%, 0 100%)',
@@ -1063,7 +1079,7 @@ function PortfolioFolder() {
               key={project.id}
               drag={isOpen}
               dragMomentum={true}
-              className="absolute bottom-0 w-[240px] h-[320px] bg-white border-[3px] border-slate-900 overflow-hidden origin-bottom cursor-grab active:cursor-grabbing"
+              className="absolute bottom-0 w-[240px] h-[320px] bg-[#B98250] border-4 border-slate-900 overflow-hidden origin-bottom cursor-grab active:cursor-grabbing"
               tabIndex={isOpen ? 0 : -1}
               role="button"
               aria-label={
@@ -1093,7 +1109,7 @@ function PortfolioFolder() {
                 opacity: 1, 
                 scale: 1,
                 zIndex: 30 + i,
-                boxShadow: ['6px 6px 0px #0f172a', '10px 10px 0px #0f172a', '6px 6px 0px #0f172a', '8px 8px 0px #0f172a', '6px 6px 0px #0f172a']
+                boxShadow: ['6px 6px 0px #493529', '10px 10px 0px #493529', '6px 6px 0px #493529', '8px 8px 0px #493529', '6px 6px 0px #493529']
               } : { 
                 rotate: project.startRotate, 
                 x: `calc(-50% + ${project.startX}px)`, 
@@ -1101,7 +1117,7 @@ function PortfolioFolder() {
                 opacity: 0.9, 
                 scale: 0.95,
                 zIndex: 10 + i,
-                boxShadow: '6px 6px 0px #0f172a'
+                boxShadow: '6px 6px 0px #493529'
               }}
               transition={isOpen ? { 
                 duration: 1.6,
@@ -1113,13 +1129,13 @@ function PortfolioFolder() {
               }}
               whileHover={isOpen ? { scale: 1.05, zIndex: 50, transition: { duration: 0.2 } } : { y: -20, transition: { duration: 0.2 } }}
             >
-              <img src={project.image} alt={`Preview image of ${project.title}`} className="w-full h-full object-cover pointer-events-none p-1 pb-16 bg-white" draggable={false} />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent pointer-events-none" aria-hidden="true" />
-              <div className="absolute bottom-6 left-6 right-6 pointer-events-none">
-                <div className="bg-[#fbbf24] px-3 py-1.5 border-2 border-slate-900 text-[10px] font-extrabold text-slate-900 uppercase tracking-wider w-max mb-3 shadow-[2px_2px_0px_#0f172a]">
+              <img src={project.image} alt={`Preview image of ${project.title}`} className="w-full h-full object-cover pointer-events-none p-2.5 pb-[92px] bg-[#B98250]" draggable={false} />
+              <div className="absolute left-0 right-0 bottom-0 h-[84px] bg-[#FFF1D6] border-t-4 border-slate-900 pointer-events-none" aria-hidden="true" />
+              <div className="absolute bottom-3 left-4 right-4 pointer-events-none">
+                <div className="bg-[#9AA889] px-2 py-1 border-2 border-slate-900 font-pixel text-[11px] font-semibold text-slate-900 uppercase tracking-wider w-max mb-1.5 shadow-[2px_2px_0px_#493529]">
                   {project.subtitle}
                 </div>
-                <h4 className="text-white font-bold text-2xl leading-tight drop-shadow-md">{project.title}</h4>
+                <h4 className="text-slate-900 font-pixel font-bold text-2xl leading-tight">{project.title}</h4>
               </div>
             </motion.div>
           ))}
@@ -1128,7 +1144,7 @@ function PortfolioFolder() {
 
       {/* Folder Front Flap */}
       <motion.div
-        className="absolute bottom-0 w-[360px] h-[240px] bg-[#fbbf24] border-[3px] border-slate-900 shadow-[8px_8px_0px_#0f172a] flex flex-col items-center justify-end pb-8 cursor-pointer overflow-hidden group focus:outline-none pointer-events-auto"
+        className="absolute bottom-0 w-[360px] h-[240px] pixel-wood flex flex-col items-center justify-end pb-8 cursor-pointer overflow-hidden group focus:outline-none pointer-events-auto"
         onClick={(e) => { if (!isOpen) { e.stopPropagation(); setIsOpen(true); } }}
         role="button"
         tabIndex={isOpen ? -1 : 0}
@@ -1153,7 +1169,7 @@ function PortfolioFolder() {
         
         {!isOpen && (
           <button 
-            className="absolute top-6 left-6 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-xs font-bold px-6 py-3 border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] hover:translate-y-1 hover:shadow-[2px_2px_0px_#0f172a] transition-all z-30 group-hover:scale-105 cursor-pointer uppercase tracking-widest"
+            className="pixel-btn pixel-btn--sage absolute top-7 left-7 text-sm px-6 py-3 z-30"
             onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}
             tabIndex={isOpen ? -1 : 0}
             aria-label="Open Folder"
@@ -1161,7 +1177,7 @@ function PortfolioFolder() {
             Open Folder
           </button>
         )}
-        <h3 className="text-white text-4xl font-extrabold tracking-wide drop-shadow-xl" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>Case Studies</h3>
+        <h3 className="pixel-sign pixel-panel px-9 py-3 text-slate-900 text-3xl font-bold">Case Studies</h3>
       </motion.div>
 
       {/* Close Button Below Folder */}
@@ -1172,7 +1188,7 @@ function PortfolioFolder() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.8 }}
             onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
-            className="absolute -bottom-[80px] left-1/2 -translate-x-1/2 bg-white text-slate-900 w-14 h-14 rounded-full border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a] transition-all z-[60] cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus:outline-none flex items-center justify-center pointer-events-auto"
+            className="pixel-btn pixel-btn--terracotta absolute -bottom-[80px] left-1/2 -translate-x-1/2 w-14 h-14 z-[60] pointer-events-auto"
             aria-label="Close Case Studies folder"
           >
             <X className="w-6 h-6" aria-hidden="true" />
@@ -1185,7 +1201,7 @@ function PortfolioFolder() {
 function TicketCard() {
   return (
     <div className="relative pointer-events-auto select-none w-[360px] h-[216px] origin-center" draggable={false}>
-      <div className="relative w-full h-full filter drop-shadow-[8px_8px_0px_#0f172a] hover:-translate-y-1.5 transition-transform duration-300 ease-out cursor-grab active:cursor-grabbing group">
+      <div className="relative w-full h-full filter drop-shadow-[8px_8px_0px_#493529] hover:-translate-y-1.5 transition-transform duration-300 ease-out cursor-grab active:cursor-grabbing group">
         <svg viewBox="0 0 400 240" className="w-full h-full overflow-visible" aria-hidden="true">
           <defs>
             {/* Rough paper fiber/grunge pattern */}
@@ -1319,7 +1335,7 @@ function TicketCard() {
 
         {/* Small floating tooltip on hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="bg-[#fbbf24] border-2 border-slate-900 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-[2px_2px_0px_#0f172a] rotate-3 translate-y-24">
+          <div className="bg-[#E8C69A] border-2 border-slate-900 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-[2px_2px_0px_#493529] rotate-3 translate-y-24">
             Draggable Souvenir 🎟️
           </div>
         </div>
@@ -1358,7 +1374,7 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
         <img
           src={gamerRoomStickerImg}
           alt="Retro gamer sitting in a room full of NES games, a bookshelf, and a Mario poster"
-          className="w-full h-auto cursor-grab active:cursor-grabbing transition-transform duration-300 group-hover:scale-[1.03] drop-shadow-[4px_8px_10px_rgba(0,0,0,0.35)]"
+          className="w-full h-auto cursor-grab active:cursor-grabbing transition-transform duration-300 group-hover:scale-[1.03] drop-shadow-[6px_6px_0px_rgba(73,53,41,0.35)]"
           draggable={false}
         />
       </div>
@@ -1367,7 +1383,7 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
 
   if (card.type === 'photo') {
     return (
-      <div className="bg-white border-[3px] border-slate-900 p-3 pb-8 rounded shadow-[5px_5px_0px_#0f172a] hover:-translate-y-1 hover:shadow-[7px_7px_0px_#0f172a] transition-all select-none w-[280px]">
+      <div className="bg-white border-[3px] border-slate-900 p-3 pb-8 rounded shadow-[5px_5px_0px_#493529] hover:-translate-y-1 hover:shadow-[7px_7px_0px_#493529] transition-all select-none w-[280px]">
         <div className="w-full h-[220px] bg-slate-100 rounded border-2 border-slate-900 overflow-hidden mb-3 relative">
           {card.image && <img src={card.image} alt="Photo" className="w-full h-full object-cover pointer-events-none" draggable={false} referrerPolicy="no-referrer" />}
         </div>
@@ -1400,7 +1416,7 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
 
   if (card.type === 'info') {
     return (
-      <div className="bg-white border-[3px] border-slate-900 rounded-2xl px-5 py-3 shadow-[5px_5px_0px_#0f172a] flex items-center gap-3 max-w-[300px] select-none hover:-translate-y-1 hover:shadow-[7px_7px_0px_#0f172a] transition-all">
+      <div className="bg-white border-[3px] border-slate-900 rounded-2xl px-5 py-3 shadow-[5px_5px_0px_#493529] flex items-center gap-3 max-w-[300px] select-none hover:-translate-y-1 hover:shadow-[7px_7px_0px_#493529] transition-all">
         <div className="shrink-0">{card.icon}</div>
         <span className="text-sm md:text-base font-bold tracking-tight text-slate-900">{card.content}</span>
       </div>
@@ -1420,7 +1436,7 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
             <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors flex items-center justify-center">
               <ExternalLink className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
             </div>
-            <div className="absolute top-2 left-2 bg-[#0a0e14]/80 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-[#2dd4bf] uppercase tracking-wider border border-[#2dd4bf]/20">
+            <div className="absolute top-2 left-2 bg-[#0a0e14]/80 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-[#9AA889] uppercase tracking-wider border border-[#9AA889]/20">
               Mission
             </div>
           </div>
@@ -1439,13 +1455,13 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
         {/* Row 1: "Stop" sticker + Pencil */}
         <div className="flex items-center gap-1 self-start ml-2 z-20">
           <motion.div 
-            className="bg-white border-[3.5px] border-slate-900 px-6 py-2 rounded-xl shadow-[5px_5px_0px_#0f172a] -rotate-6 flex items-center justify-center relative"
+            className="bg-white border-[3.5px] border-slate-900 px-6 py-2 rounded-xl shadow-[5px_5px_0px_#493529] -rotate-6 flex items-center justify-center relative"
             whileHover={{ scale: 1.05, rotate: -3 }}
           >
             <span className="font-sans font-extrabold text-3xl tracking-tight text-slate-900 uppercase">Stop</span>
             
             {/* Cute Cartoonish Pencil sticking out of the "Stop" block */}
-            <div className="absolute -top-7 -right-7 rotate-[35deg] bg-amber-400 border-[3px] border-slate-900 rounded-xl p-1.5 shadow-[3px_3px_0px_#0f172a] flex items-center justify-center">
+            <div className="absolute -top-7 -right-7 rotate-[35deg] bg-amber-400 border-[3px] border-slate-900 rounded-xl p-1.5 shadow-[3px_3px_0px_#493529] flex items-center justify-center">
               <Pencil className="w-6 h-6 text-slate-900 fill-amber-300 stroke-[2.5px]" />
             </div>
           </motion.div>
@@ -1454,11 +1470,11 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
         {/* Row 2: "Defending Your Design," Pill + Search */}
         <div className="w-full relative z-10 -mt-2">
           <motion.div 
-            className="bg-[#93c5fd] border-[3.5px] border-slate-900 px-7 py-3.5 rounded-full shadow-[5px_5px_0px_#0f172a] rotate-[2deg] flex items-center gap-3 w-max mx-auto relative"
+            className="bg-[#9AA889] border-[3.5px] border-slate-900 px-7 py-3.5 rounded-full shadow-[5px_5px_0px_#493529] rotate-[2deg] flex items-center gap-3 w-max mx-auto relative"
             whileHover={{ scale: 1.03, rotate: 0 }}
           >
             {/* Magnifying Glass Icon sticking out */}
-            <div className="absolute -left-6 -top-4 rotate-[-15deg] bg-white border-[3px] border-slate-900 rounded-full p-2 shadow-[3px_3px_0px_#0f172a] flex items-center justify-center">
+            <div className="absolute -left-6 -top-4 rotate-[-15deg] bg-white border-[3px] border-slate-900 rounded-full p-2 shadow-[3px_3px_0px_#493529] flex items-center justify-center">
               <Search className="w-5 h-5 text-slate-900 stroke-[3px]" />
             </div>
             
@@ -1471,7 +1487,7 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
         {/* Row 3: "Start" sticker */}
         <div className="flex items-center self-center z-20 -mt-2">
           <motion.div 
-            className="bg-white border-[3.5px] border-slate-900 px-6 py-2 rounded-xl shadow-[5px_5px_0px_#0f172a] rotate-[4deg] flex items-center justify-center"
+            className="bg-white border-[3.5px] border-slate-900 px-6 py-2 rounded-xl shadow-[5px_5px_0px_#493529] rotate-[4deg] flex items-center justify-center"
             whileHover={{ scale: 1.05, rotate: 1 }}
           >
             <span className="font-sans font-extrabold text-3xl tracking-tight text-slate-900 uppercase">Start</span>
@@ -1481,7 +1497,7 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
         {/* Row 4: "Explaining the Brain" Pill + Brain */}
         <div className="w-full relative z-10 -mt-2">
           <motion.div 
-            className="bg-[#fcd34d] border-[3.5px] border-slate-900 px-7 py-3.5 rounded-full shadow-[5px_5px_0px_#0f172a] -rotate-[2deg] flex items-center gap-3 w-max mx-auto relative"
+            className="bg-[#E8C69A] border-[3.5px] border-slate-900 px-7 py-3.5 rounded-full shadow-[5px_5px_0px_#493529] -rotate-[2deg] flex items-center gap-3 w-max mx-auto relative"
             whileHover={{ scale: 1.03, rotate: 0 }}
           >
             <span className="font-sans font-black text-2xl md:text-3xl tracking-tight text-slate-900 pr-5 pl-1">
@@ -1489,7 +1505,7 @@ function CardContent({ card, isDesktop, timeStr, currentHour }: { card: CardData
             </span>
 
             {/* Brain Icon sticking out on the right */}
-            <div className="absolute -right-6 -bottom-3 rotate-[12deg] bg-white border-[3px] border-slate-900 rounded-full p-2 shadow-[3px_3px_0px_#0f172a] flex items-center justify-center">
+            <div className="absolute -right-6 -bottom-3 rotate-[12deg] bg-white border-[3px] border-slate-900 rounded-full p-2 shadow-[3px_3px_0px_#493529] flex items-center justify-center">
               <Brain className="w-6 h-6 text-slate-900 fill-pink-200 stroke-[2.5px]" />
             </div>
           </motion.div>
@@ -1585,7 +1601,7 @@ function AnalogClock() {
 
   return (
     <div 
-      className="relative w-[75px] h-[75px] md:w-[90px] md:h-[90px] lg:w-[110px] lg:h-[110px] bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] flex items-center justify-center p-0.5 select-none pointer-events-auto transition-transform duration-300 hover:-translate-y-1 hover:shadow-[6px_6px_0px_#0f172a]" 
+      className="relative w-[75px] h-[75px] md:w-[90px] md:h-[90px] lg:w-[110px] lg:h-[110px] pixel-wood flex items-center justify-center p-2 select-none pointer-events-auto transition-transform duration-300 hover:-translate-y-1" 
       
       onMouseEnter={handleHoverStart}
       ref={containerRef}
@@ -1596,13 +1612,13 @@ function AnalogClock() {
             <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#000000" floodOpacity="0.08" />
           </filter>
           <linearGradient id="min-hand-grad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#16233A" />
-            <stop offset="100%" stopColor="#2c3e5d" />
+            <stop offset="0%" stopColor="#493529" />
+            <stop offset="100%" stopColor="#634B39" />
           </linearGradient>
         </defs>
 
         {/* Outer Rim */}
-        <rect x="-95" y="-95" width="190" height="190" fill="#ffffff" stroke="#0f172a" strokeWidth="6" />
+        <rect x="-95" y="-95" width="190" height="190" fill="#FFF1D6" stroke="#493529" strokeWidth="8" />
 
         {/* Minute and Hour Ticks (Pins) */}
         {Array.from({ length: 60 }).map((_, i) => {
@@ -1614,7 +1630,7 @@ function AnalogClock() {
               y1={isHour ? "-88" : "-91"}
               x2="0"
               y2="-95"
-              stroke={isHour ? "#64748b" : "#cbd5e1"}
+              stroke={isHour ? "#8A6E56" : "#E0C49A"}
               strokeWidth={isHour ? "2" : "1.2"}
               transform={`rotate(${i * 6})`}
             />
@@ -1622,49 +1638,49 @@ function AnalogClock() {
         })}
 
         {/* Brand Name "IPURAS" */}
-        <text x="0" y="44" textAnchor="middle" fontSize="7.5" fontWeight="900" fill="#0f172a" fontFamily="monospace" letterSpacing="2.5">
+        <text x="0" y="44" textAnchor="middle" fontSize="7.5" fontWeight="900" fill="#493529" fontFamily="monospace" letterSpacing="2.5">
           IPURAS
         </text>
 
         {/* Hour Markers */}
-        <circle cx="0" cy="-74" r="5.5" fill="#fbbf24" stroke="#0f172a" strokeWidth="2" />
-        <line x1="0" y1="-78" x2="0" y2="-68" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" transform="rotate(30)" />
+        <circle cx="0" cy="-74" r="5.5" fill="#E8C69A" stroke="#493529" strokeWidth="2" />
+        <line x1="0" y1="-78" x2="0" y2="-68" stroke="#493529" strokeWidth="2" strokeLinecap="round" transform="rotate(30)" />
         <g transform="rotate(60) translate(0, -74)">
-          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#0f172a" fontFamily="Inter, sans-serif">
+          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#493529" fontFamily="'Pixelify Sans', sans-serif">
             2
           </text>
         </g>
-        <circle cx="74" cy="0" r="5.5" fill="#0A66C2" stroke="#0f172a" strokeWidth="2" />
+        <circle cx="74" cy="0" r="5.5" fill="#536B4B" stroke="#493529" strokeWidth="2" />
         <g transform="rotate(120) translate(0, -74)">
-          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#0f172a" fontFamily="Inter, sans-serif">
+          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#493529" fontFamily="'Pixelify Sans', sans-serif">
             4
           </text>
         </g>
         <g transform="rotate(150) translate(0, -74)">
-          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#0f172a" fontFamily="Inter, sans-serif">
+          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#493529" fontFamily="'Pixelify Sans', sans-serif">
             5
           </text>
         </g>
-        <circle cx="0" cy="74" r="5.5" fill="#EA4335" stroke="#0f172a" strokeWidth="2" />
+        <circle cx="0" cy="74" r="5.5" fill="#C96F4A" stroke="#493529" strokeWidth="2" />
         <g transform="rotate(210) translate(0, -74)">
-          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#0f172a" fontFamily="Inter, sans-serif">
+          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#493529" fontFamily="'Pixelify Sans', sans-serif">
             7
           </text>
         </g>
         <g transform="rotate(240) translate(0, -74)">
-          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#0f172a" fontFamily="Inter, sans-serif">
+          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#493529" fontFamily="'Pixelify Sans', sans-serif">
             8
           </text>
         </g>
-        <circle cx="-74" cy="0" r="5.5" fill="#34d399" stroke="#0f172a" strokeWidth="2" />
+        <circle cx="-74" cy="0" r="5.5" fill="#9AA889" stroke="#493529" strokeWidth="2" />
         <g transform="rotate(300) translate(0, -74)">
-          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#0f172a" fontFamily="Inter, sans-serif">
+          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="12" fontWeight="500" fill="#493529" fontFamily="'Pixelify Sans', sans-serif">
             10
           </text>
         </g>
         <g transform="rotate(330)">
-          <line x1="-2" y1="-78" x2="-2" y2="-68" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
-          <line x1="2" y1="-78" x2="2" y2="-68" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+          <line x1="-2" y1="-78" x2="-2" y2="-68" stroke="#493529" strokeWidth="2" strokeLinecap="round" />
+          <line x1="2" y1="-78" x2="2" y2="-68" stroke="#493529" strokeWidth="2" strokeLinecap="round" />
         </g>
 
         {/* Premium Hands */}
@@ -1673,7 +1689,7 @@ function AnalogClock() {
           <motion.g style={{ rotate: totalHourDeg }}>
             {/* Invisible bounding box to ensure CSS transform-origin 50% 50% maps to exactly (0,0) */}
             <circle cx="0" cy="0" r="44" fill="none" pointerEvents="none" />
-            <rect x="-4" y="-40" width="8" height="44" rx="0" fill="#0f172a" />
+            <rect x="-4" y="-40" width="8" height="44" rx="0" fill="#493529" />
             
           </motion.g>
 
@@ -1681,13 +1697,13 @@ function AnalogClock() {
           <motion.g style={{ rotate: totalMinDeg }}>
             {/* Invisible bounding box to ensure CSS transform-origin 50% 50% maps to exactly (0,0) */}
             <circle cx="0" cy="0" r="65" fill="none" pointerEvents="none" />
-            <rect x="-2.5" y="-60.5" width="5" height="63" rx="0" fill="#0f172a" />
+            <rect x="-2.5" y="-60.5" width="5" height="63" rx="0" fill="#493529" />
           </motion.g>
 
           {/* Center Cap */}
-          <circle cx="0" cy="0" r="9" fill="#ffffff" />
-          <circle cx="0" cy="0" r="8" fill="none" stroke="#0f172a" strokeWidth="3" />
-          <circle cx="0" cy="0" r="3" fill="#EA4335" />
+          <circle cx="0" cy="0" r="9" fill="#FFF1D6" />
+          <circle cx="0" cy="0" r="8" fill="none" stroke="#493529" strokeWidth="3" />
+          <circle cx="0" cy="0" r="3" fill="#C96F4A" />
         </g>
       </svg>
     </div>
@@ -1752,21 +1768,21 @@ function GreetingCard({ timeStr, currentHour }: { timeStr: string, currentHour: 
       <div className="mb-8">
         <AnalogClock />
       </div>
-      <h1 className="text-6xl font-serif font-medium tracking-tight text-center leading-[1.05] mb-6">
+      <h1 className="text-6xl font-pixel font-bold tracking-wide text-center leading-[1.05] mb-6 text-slate-900" style={{ textShadow: '4px 4px 0 #FFF1D6' }}>
         {greeting.split('\n').map((line, i) => (
           <React.Fragment key={i}>
             {line}<br />
           </React.Fragment>
         ))}
       </h1>
-      <div className="flex items-center gap-2 font-medium opacity-90 text-sm">
+      <div className="pixel-dialog flex items-center gap-2 font-medium text-sm px-4 py-2">
         <WeatherIcon className="w-4 h-4" />
         <span>It's {temperature !== null ? `${temperature}°` : '...'} in Bangalore, India</span>
         {loading && (
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-1" title="Updating..." />
+          <span className="w-2 h-2 bg-emerald-600 px-blink ml-1" title="Updating..." />
         )}
       </div>
-      <div className="mt-8 font-serif italic text-lg opacity-80 text-center text-slate-800">
+      <div className="mt-9 font-serif italic text-lg text-center text-slate-900 bg-[#E8C69A] px-4 py-1 pixel-outline">
         "Imperfection Mentally"
       </div>
     </div>
@@ -1884,7 +1900,7 @@ function ToolSkillsCard() {
   const duration = 60; // slow, elegant rotation
 
   return (
-    <div className="relative flex items-center justify-center w-[400px] h-[400px] pointer-events-none rounded-full scale-[0.7] sm:scale-100 bg-white shadow-[8px_8px_0px_#0f172a] border-[3px] border-slate-900">
+    <div className="relative flex items-center justify-center w-[400px] h-[400px] pointer-events-none rounded-full scale-[0.7] sm:scale-100 pixel-checker-sage border-4 border-slate-900 shadow-[inset_0_0_0_12px_#536B4B,inset_0_0_0_16px_#493529,0_10px_0_0_rgba(73,53,41,0.35)]">
       <style>{`
         @keyframes orbit {
           from { transform: rotate(0deg); }
@@ -1895,24 +1911,24 @@ function ToolSkillsCard() {
           to { transform: translate(-50%, -50%) rotate(0deg); }
         }
         @keyframes breathe-center {
-          0%, 100% { box-shadow: 0 0 0 rgba(59,130,246,0); }
-          50% { box-shadow: 0 0 20px rgba(59,130,246,0.3); }
+          0%, 100% { box-shadow: inset 4px 4px 0 0 rgba(73,53,41,0.25), inset -4px -4px 0 0 rgba(255,241,214,0.7), 0 -4px 0 0 #493529, 0 4px 0 0 #493529, -4px 0 0 0 #493529, 4px 0 0 0 #493529, 0 0 0 4px rgba(255,241,214,0); }
+          50% { box-shadow: inset 4px 4px 0 0 rgba(73,53,41,0.25), inset -4px -4px 0 0 rgba(255,241,214,0.7), 0 -4px 0 0 #493529, 0 4px 0 0 #493529, -4px 0 0 0 #493529, 4px 0 0 0 #493529, 0 0 0 12px rgba(255,241,214,0.55); }
         }
       `}</style>
 
       {/* Orbit Rings */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] border-2 border-slate-900 border-dashed rounded-full" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[230px] h-[230px] border border-slate-300 rounded-full" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] border-[2px] border-slate-900 rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] border-4 border-[#536B4B] border-dashed rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[230px] h-[230px] border-2 border-[#E8C69A] rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] border-4 border-[#536B4B] rounded-full" />
 
       {/* Particles travelling along the outer ring (radius 150 -> width 300) */}
       <div className="absolute top-1/2 left-1/2 w-0 h-0" style={{ animation: `orbit 10s linear infinite` }}>
-        <div className="absolute top-0 left-[150px] w-3 h-3 bg-amber-500 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-0 left-[150px] w-3 h-3 bg-[#E8C69A] border-2 border-slate-900 shadow-[2px_2px_0px_#493529] -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       {/* Center Icon */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 p-5 rounded-full border-[3px] border-slate-900 bg-white shadow-[4px_4px_0px_#0f172a] pointer-events-auto"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 p-5 pixel-slot bg-[#FFF1D6] pointer-events-auto"
         style={{ animation: 'breathe-center 4s ease-in-out infinite' }}
       >
         <UserRoundPen className="w-8 h-8 text-slate-900" />
@@ -1947,7 +1963,7 @@ function ToolSkillsCard() {
                 }}
               >
                 <button 
-                  className="w-[56px] h-[56px] rounded-full flex items-center justify-center bg-white border-[3px] border-slate-900 shadow-[4px_4px_0px_#0f172a] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[6px_6px_0px_#0f172a] cursor-pointer focus-visible:ring-4 focus-visible:ring-blue-400 focus:outline-none"
+                  className="pixel-slot w-[56px] h-[56px] flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 cursor-pointer focus-visible:outline-dashed focus-visible:outline-[3px] focus-visible:outline-offset-[6px] focus-visible:outline-[#C96F4A] focus:outline-none"
                   aria-label={`Tool: ${tool.name}`}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -1959,7 +1975,7 @@ function ToolSkillsCard() {
                     <Icon className="w-6 h-6" style={{ color: tool.name === 'ChatGPT' ? '#10a37f' : tool.color }} aria-hidden="true" />
                   )}
                 </button>
-                <span className="text-[12px] font-bold text-slate-900 whitespace-nowrap bg-white px-3 py-1.5 rounded-lg border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-within:opacity-100 transition-opacity duration-300">
+                <span className="pixel-badge text-[12px] font-semibold text-slate-900 whitespace-nowrap bg-white px-2.5 py-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-within:opacity-100 transition-opacity duration-300">
                   {tool.name}
                 </span>
               </div>

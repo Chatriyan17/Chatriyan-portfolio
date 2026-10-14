@@ -16,6 +16,7 @@ A modern, interactive portfolio web application built with React, Vite, and Tail
 - **Embedded Case Studies** — Full interactive case study pages (e.g., YouTube Shorts)
 - **Responsive Design** — Mobile and desktop optimized
 - **Smooth Animations** — Powered by Framer Motion
+- **Cozy Pixel-Art Theme** — The canvas is styled as a top-down pixel-art RPG room (oak floor, wall, furniture, rugs) with retro game UI: pixel menu buttons, parchment panels, wooden signboards and inventory-style slots
 
 ## 🚀 Quick Start
 
